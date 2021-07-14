@@ -1,0 +1,45 @@
+/*! pretty-print-json v0.4.5 ~ github.com/center-key/pretty-print-json ~ MIT License */
+.json-key {
+    color: brown;
+}
+
+.json-string {
+    color: olive;
+}
+
+.json-number {
+    color: navy;
+}
+
+.json-boolean {
+    color: teal;
+}
+
+.json-null {
+    color: dimgray;
+}
+
+a.json-link {
+    color: purple;
+    transition: all 400ms;
+}
+
+a.json-link:visited {
+    color: slategray;
+}
+
+a.json-link:hover {
+    color: blueviolet;
+}
+
+a.json-link:active {
+    color: slategray;
+}
+
+.img-height {
+    height: 250px;
+}
+
+.btn-text {
+    color: #fff !important;
+}
