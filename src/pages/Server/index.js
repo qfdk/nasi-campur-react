@@ -156,7 +156,7 @@ const Server = () => {
                 });
             });
         } else {
-            mqttConnect('mqtt://mqtt.qfdk.me/mqtt');
+            mqttConnect('wss://mqtt.qfdk.me/mqtt');
         }
         return () => {
             if (client) {
