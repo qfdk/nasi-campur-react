@@ -1,12 +1,13 @@
 import React, {Suspense} from 'react';
-import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer';
 import Spinner from './widget/Spinner';
+import {lazy} from '@loadable/component';
 
-const Home = React.lazy(() => import('./pages/Home/Home'));
-const Help = React.lazy(() => import('./pages/Help/Help'));
-const Server = React.lazy(() => import('./pages/Server/Server'));
+const Home = lazy(() => import('./pages/Home'));
+const Help = lazy(() => import('./pages/Help'));
+const Server = lazy(() => import('./pages/Server'));
 
 const App = () => {
     return (
@@ -14,14 +15,10 @@ const App = () => {
             <Navbar/>
             <div style={{marginTop: '-10px'}}>
                 <Suspense fallback={<Spinner/>}>
-                    <Switch>
-                        <Route path="/" exact>
-                            <Home/>
-                        </Route>
-                        <Route path="/help" component={Help} exact/>
-                        <Route path="/server" component={Server} exact/>
-                        <Redirect to="/"/>
-                    </Switch>
+                    <Route path="/" component={Home} exact/>
+                    <Route path="/help" component={Help} exact/>
+                    <Route path="/server" component={Server} exact/>
+                    <Redirect to="/"/>
                 </Suspense>
             </div>
             <Footer/>
