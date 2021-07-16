@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {Fragment, useReducer} from 'react';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
 import UserInfo from './UserInfo';
@@ -31,7 +31,7 @@ const userReducer = (state, action) => {
     }
 };
 
-const Home = () => {
+const SearchInput = React.memo(() => {
     const [user, userDispatch] = useReducer(userReducer, initUserInfo);
 
     const wechatNameChangeHandler = (e) => {
@@ -55,9 +55,7 @@ const Home = () => {
     };
 
     return (
-        <div className="container">
-            <h3>科学 🏄 回法国</h3>
-            <p className="alert alert-info">富强、民主、文明、和谐、自由、平等、公正、法治、爱国、敬业、诚信、友善</p>
+        <Fragment>
             <div className="input-group col-md-6 col-md-offset-3">
                 <span className="input-group-addon" id="basic-addon1">@</span>
                 <input autoComplete="off" value={user.wechatName} type="text"
@@ -76,7 +74,18 @@ const Home = () => {
             </div>
             {user.isLoading && <Spinner/>}
             {!user.isLoading && user.data && <UserInfo data={user.data}/>}
+        </Fragment>
+    );
+});
+
+const Home = () => {
+    return (
+        <div className="container">
+            <h3>科学 🏄 回法国</h3>
+            <p className="alert alert-info">富强、民主、文明、和谐、自由、平等、公正、法治、爱国、敬业、诚信、友善</p>
+            <SearchInput/>
         </div>
     );
 };
+
 export default Home;

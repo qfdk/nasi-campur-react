@@ -148,4 +148,4 @@ const UserInfo = ({data}) => {
     }
 ;
 
-export default UserInfo;
+export default React.memo(UserInfo);
