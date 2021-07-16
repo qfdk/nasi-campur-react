@@ -1,77 +1,9 @@
-import React, {Fragment, useEffect, useReducer, useState} from 'react';
-import './server.css';
+import React, {useEffect, useReducer, useState} from 'react';
 import httpRequest from '../../request';
 import mqtt from 'mqtt';
 import Spinner from '../../widget/Spinner';
-
-const StaticInfo = React.memo(({cpu, network, type, os}) => {
-    return (
-        <Fragment>
-            <div className="col-sm-12 inline"><label>CPU信息:</label>
-                <span>{cpu ? cpu.model : ''}</span>
-            </div>
-            <div className="col-sm-12 inline"><label>系统信息:</label>
-                <span>{type} {os}</span>
-            </div>
-            <div className="col-sm-12 inline"><label>流量使用:</label>
-                {network && <span>上传 {network.rx_formatted} | 下载 {network.tx_formatted} </span>}
-            </div>
-        </Fragment>
-    );
-});
-
-const ServerCard = React.memo((props) => {
-    const {country, description, uptime, lastUpdateTime, cpu, network, type, os, disk, memory} = props;
-    return (
-        <div className="col-md-4">
-            <div className="panel panel-success">
-                <div className="panel-heading"><h3 className="panel-title">{country} - {description}</h3></div>
-                <div className="panel-body">
-                    <div className="row">
-                        <StaticInfo cpu={cpu} network={network} type={type} os={os}/>
-                        <div className="col-sm-12 inline"><label>在线时长:</label>
-                            <span>{uptime}</span></div>
-                        <div className="col-sm-12 inline"><label>最后更改 IP:</label>
-                            <span>{lastUpdateTime}</span></div>
-                        <div className="col-sm-12"><label className="usageLabel inline">CPU 使用率:</label>
-                            {cpu && cpu.usage && <div className="usageProcess">
-                                <div className="progress">
-                                    <div className="progress-placeholder">CPU : {cpu.usage}%</div>
-                                    <div className="progress-text">CPU : {cpu.usage}%</div>
-                                    <div className="progress-bar progress-bar-info progress-bar-striped active"
-                                         role="progressbar"
-                                         style={{width: `${cpu.usage}%`}}></div>
-                                </div>
-                            </div>}
-                        </div>
-                        <div className="col-sm-12"><label className="usageLabel inline">RAM 使用率:</label>
-                            {memory && <div className="usageProcess">
-                                <div className="progress">
-                                    <div className="progress-placeholder">RAM: {memory.current}/{memory.total}</div>
-                                    <div className="progress-text">RAM: {memory.current}/{memory.total}</div>
-                                    <div className="progress-bar progress-bar-info progress-bar-striped active"
-                                         role="progressbar"
-                                         style={{width: `${memory.usage}%`}}></div>
-                                </div>
-                            </div>}
-                        </div>
-                        <div className="col-sm-12"><label className="usageLabel inline">硬盘使用率:</label>
-                            {disk && <div className="usageProcess">
-                                <div className="progress">
-                                    <div className="progress-placeholder">DISK: {disk.current}/{disk.total}</div>
-                                    <div className="progress-text">DISK: {disk.current}/{disk.total}</div>
-                                    <div className="progress-bar progress-bar-info progress-bar-striped active"
-                                         role="progressbar"
-                                         style={{width: `${disk.usage}%`}}></div>
-                                </div>
-                            </div>}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-});
+import useIsMountedRef from '../../hooks/useIsMountedRef';
+import ServerCard from './ServerCard';
 
 const initServer = {
     isLoading: false,
@@ -109,9 +41,10 @@ const Server = () => {
     const [client, setClient] = useState(null);
     const [topics, setTopics] = useState([]);
     const [server, serverDispatch] = useReducer(serverReducer, initServer);
+    const isMountedRef = useIsMountedRef();
 
     const mqttConnect = (host, mqttOption) => {
-        setClient(mqtt.connect(host, mqttOption));
+        isMountedRef.current && setClient(mqtt.connect(host, mqttOption));
     };
 
     const mqttSub = (topic) => {
@@ -129,11 +62,11 @@ const Server = () => {
     useEffect(() => {
         serverDispatch({type: serverConstants.LOADING});
         httpRequest.get('/api/servers').then(response => {
-            serverDispatch({type: serverConstants.SET, payload: response.data});
-            setTopics(response.data);
+            isMountedRef.current && serverDispatch({type: serverConstants.SET, payload: response.data});
+            isMountedRef.current && setTopics(response.data);
         });
         return () => {
-            // console.log('====组件消失了====');
+            console.log('====组件消失了====');
         };
     }, []);
 
@@ -150,25 +83,25 @@ const Server = () => {
                 // console.log('重新连接成功');
             });
             client.on('message', (topic, message) => {
-                serverDispatch({
+                isMountedRef.current && serverDispatch({
                     type: serverConstants.SET_MESSAGE,
                     payload: {topic, ...JSON.parse(message.toString())}
                 });
             });
-        } else {
-            mqttConnect('wss://mqtt.qfdk.me/mqtt');
         }
         return () => {
             if (client) {
                 // console.log('MQTT client 要销毁了');
                 client.end(() => {
-                    // console.log('MQTT 务器关闭连接');
+                    console.log('MQTT 务器关闭连接');
                 });
             }
         };
     }, [client]);
 
     useEffect(() => {
+        if (!client)
+            mqttConnect('wss://mqtt.qfdk.me/mqtt');
         for (const topic of topics) {
             mqttSub(topic.domain);
         }

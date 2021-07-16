@@ -46,4 +46,5 @@ const Navbar = () => {
         </nav>
     );
 };
+
 export default React.memo(Navbar);
