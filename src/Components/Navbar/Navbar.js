@@ -1,5 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faAddressBook, faChartBar, faTachometerAlt} from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
     return (
@@ -22,22 +24,19 @@ const Navbar = () => {
                     <ul className="nav navbar-nav navbar-right">
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/" exact>
-                                <i className="fas fa-tachometer-alt">
-                                </i> 主页
+                                <FontAwesomeIcon icon={faTachometerAlt}/> 主页
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/help" exact>
-                                <i className="far fa-address-book">
-                                </i> 帮助
+                                <FontAwesomeIcon icon={faAddressBook}/> 帮助
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/server" exact>
-                                <i className="far fa-chart-bar">
-                                </i> 服务器列表
+                                <FontAwesomeIcon icon={faChartBar}/> 服务器列表
                             </NavLink>
                         </li>
                     </ul>
