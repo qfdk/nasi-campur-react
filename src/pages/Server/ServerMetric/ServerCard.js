@@ -17,7 +17,7 @@ const StaticInfo = React.memo(({cpu, network, type, os}) => {
     );
 });
 
-const ServerCard = React.memo((props) => {
+const ServerCard = (props) => {
     const {country, description, uptime, lastUpdateTime, cpu, network, type, os, disk, memory} = props;
     return (
         <div className="col-md-4">
@@ -37,7 +37,7 @@ const ServerCard = React.memo((props) => {
                                     <div className="progress-text">CPU : {cpu.usage}%</div>
                                     <div className="progress-bar progress-bar-info progress-bar-striped active"
                                          role="progressbar"
-                                         style={{width: `${cpu.usage}%`}}></div>
+                                         style={{width: `${cpu.usage}%`}}/>
                                 </div>
                             </div>}
                         </div>
@@ -48,7 +48,7 @@ const ServerCard = React.memo((props) => {
                                     <div className="progress-text">RAM: {memory.current}/{memory.total}</div>
                                     <div className="progress-bar progress-bar-info progress-bar-striped active"
                                          role="progressbar"
-                                         style={{width: `${memory.usage}%`}}></div>
+                                         style={{width: `${memory.usage}%`}}/>
                                 </div>
                             </div>}
                         </div>
@@ -59,7 +59,7 @@ const ServerCard = React.memo((props) => {
                                     <div className="progress-text">DISK: {disk.current}/{disk.total}</div>
                                     <div className="progress-bar progress-bar-info progress-bar-striped active"
                                          role="progressbar"
-                                         style={{width: `${disk.usage}%`}}></div>
+                                         style={{width: `${disk.usage}%`}}/>
                                 </div>
                             </div>}
                         </div>
@@ -68,6 +68,6 @@ const ServerCard = React.memo((props) => {
             </div>
         </div>
     );
-});
+};
 
-export default ServerCard;
+export default React.memo(ServerCard);
