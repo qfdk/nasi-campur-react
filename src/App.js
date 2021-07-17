@@ -22,7 +22,7 @@ const App = () => {
     return (
         <Router>
             <Navbar/>
-            <div style={{marginTop: '-10px'}}>
+            <div style={{marginTop: '65px'}}>
                 <Suspense fallback={<Spinner/>}>
                     <Route path="/" component={Home} exact/>
                     <Route path="/help" component={Help} exact/>
