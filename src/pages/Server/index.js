@@ -52,7 +52,7 @@ const Server = () => {
             // console.log('订阅主题');
             client.subscribe(topic, {qos: 0}, (error) => {
                 if (error) {
-                    // console.log('Subscribe to topics error', error);
+                    console.log(`${topic} 订阅失败!`);
                     return;
                 }
             });
@@ -65,22 +65,19 @@ const Server = () => {
             isMountedRef.current && serverDispatch({type: serverConstants.SET, payload: response.data});
             isMountedRef.current && setTopics(response.data);
         });
-        return () => {
-            console.log('====组件消失了====');
-        };
     }, []);
 
     useEffect(() => {
         if (client) {
             client.on('connect', () => {
-                // console.log('订阅服务器连接成功');
+                console.log('订阅服务器连接成功');
             });
             client.on('error', (err) => {
-                console.error('Connection error: ', err);
+                console.error('连接错误: ', err);
                 client.end();
             });
             client.on('reconnect', () => {
-                // console.log('重新连接成功');
+                console.log('重新连接成功');
             });
             client.on('message', (topic, message) => {
                 isMountedRef.current && serverDispatch({
@@ -93,7 +90,7 @@ const Server = () => {
             if (client) {
                 // console.log('MQTT client 要销毁了');
                 client.end(() => {
-                    console.log('MQTT 务器关闭连接');
+                    console.log('MQTT client 关闭!');
                 });
             }
         };

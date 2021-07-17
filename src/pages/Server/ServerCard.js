@@ -21,7 +21,7 @@ const ServerCard = React.memo((props) => {
     const {country, description, uptime, lastUpdateTime, cpu, network, type, os, disk, memory} = props;
     return (
         <div className="col-md-4">
-            <div className="panel panel-success">
+            <div className={cpu ? 'panel panel-success' : 'panel panel-danger'}>
                 <div className="panel-heading"><h3 className="panel-title">{country} - {description}</h3></div>
                 <div className="panel-body">
                     <div className="row">

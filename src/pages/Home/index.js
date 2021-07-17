@@ -13,7 +13,8 @@ const userConstants = {
     LOADING: 'LOADING',
     RESET: 'RESET',
     SET_WECHATNAME: 'SET_WECHATNAME',
-    SET: 'SET'
+    SET: 'SET',
+    SET_ERROR: 'SET_ERROR'
 };
 
 const userReducer = (state, action) => {
@@ -51,6 +52,8 @@ const SearchInput = React.memo(() => {
             }
         }).then(response => {
             userDispatch({type: userConstants.SET, payload: response.data});
+        }).catch(e => {
+            userDispatch({type: userConstants.SET, payload: {error: {details: e, status: '500', stack: '请求失败'}}});
         });
     };
 

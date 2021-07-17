@@ -2,24 +2,18 @@ import React, {Fragment, useState} from 'react';
 import './user-info.css';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
+import Alert from '../../widget/Alert';
 
 const createMarkup = (html) => {
     return {__html: html};
 };
-
-const Error = React.memo(({error}) => {
-    return (
-        <div className="alert alert-warning" role="alert" style={{marginTop: '20px'}}>
-            <strong>Warning!</strong> {error.status} - {error.stack}
-        </div>
-    );
-});
 
 const UserInfo = ({data}) => {
         const {user, traffic, endTime, v2rayImg, ssrImg, v2ray, error} = data;
 
         const [containerState, setContainerState] = useState(error ? {} :
             {port: user.containerPort, status: user.containerStatus, ssrImg, qrCode: user.qrCode});
+
         const [loading, setLoading] = useState(false);
 
         const reCreateContainer = (uid) => {
@@ -41,13 +35,11 @@ const UserInfo = ({data}) => {
                         qrCode
                     };
                 });
-            }).catch(e => {
-                console.log(e);
             });
         };
 
         return (
-            error ? <Error error={error}/> :
+            error ? <Alert type={error.details ? 'danger' : 'warning'} message={`${error.status} - ${error.stack}`}/> :
                 <Fragment>
                     <div className="panel panel-primary" style={{marginTop: '20px'}}>
                         <div className="panel-heading">
