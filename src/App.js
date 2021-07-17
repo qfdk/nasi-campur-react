@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React, {Suspense, useEffect} from 'react';
 import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer';
@@ -10,6 +10,15 @@ const Help = lazy(() => import('./pages/Help'));
 const Server = lazy(() => import('./pages/Server'));
 
 const App = () => {
+    useEffect(() => {
+        const loading = document.getElementById('i-loading');
+        if (loading) {
+            loading.setAttribute('class', 'i-loading-out');
+            setTimeout(() => {
+                loading.style.display = 'none';
+            }, 200);
+        }
+    }, []);
     return (
         <Router>
             <Navbar/>
