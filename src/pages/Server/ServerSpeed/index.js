@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import httpRequest from '../../../request';
 import {faSyncAlt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -20,6 +20,7 @@ const getServerInfo = async (server) => {
 
 const ServerSpeed = (props) => {
     const [servers, setServers] = useState(props.data);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchData = async () => {
         const tables = [];
@@ -33,15 +34,24 @@ const ServerSpeed = (props) => {
     };
 
     useEffect(() => {
-        fetchData();
+        setIsLoading(true);
+        fetchData().then(r => {setIsLoading(false);});
     }, []);
 
+    const btnRefreshHandler = () => {
+        setIsLoading(true);
+        fetchData().then(r => {setIsLoading(false);});
+    };
     return (
-        <div className="table-responsive">
-            <button className={'btn btn-primary'} onClick={fetchData}>
-                <FontAwesomeIcon icon={faSyncAlt}/> 重新测试
+        <Fragment>
+            <button className={'btn btn-primary'}
+                    onClick={btnRefreshHandler}
+                    disabled={isLoading}
+            >
+                <FontAwesomeIcon icon={faSyncAlt} spin={isLoading}/> 重新测试
             </button>
-            <table className="table">
+
+            <table className="table" style={{marginTop: '20px'}}>
                 <thead>
                 <tr>
                     <th>#</th>
@@ -55,10 +65,13 @@ const ServerSpeed = (props) => {
                     servers.map((data, index) => {
                         return (
                             <tr key={data.domain}>
-                                <th scope="row">{index}</th>
+                                <th scope="row">{index + 1}</th>
                                 <td>{data.country}</td>
                                 <td>{data.description}</td>
-                                <td>{data.delta === 999 ? '-' : data.delta + ' ms'}</td>
+                                <td className={(data.delta === 999 || data.delta === '-')
+                                    ? 'danger'
+                                    : null}>{data.delta === 999 || data.delta === '-' ? '节点出错' : data.delta +
+                                    ' ms'}</td>
                             </tr>
                         );
                     })
@@ -66,7 +79,7 @@ const ServerSpeed = (props) => {
                 </tbody>
 
             </table>
-        </div>
+        </Fragment>
     );
 };
 
