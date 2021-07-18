@@ -16,7 +16,8 @@ const ServerSpeed = (props) => {
                 const updateState = [...servers];
                 const newDate = {...server, ...delta};
                 updateState[index] = newDate;
-                setServer(newDate.sort((a, b) => a - b));
+                const newServers = updateState.sort((a, b) => a - b);
+                setServer(newServers);
             }).catch(e => {
                 console.log(e.message);
             });
