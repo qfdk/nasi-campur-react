@@ -1,7 +1,7 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useCallback} from 'react';
 import './server.css';
 
-const StaticInfo = React.memo(({cpu, network, type, os}) => {
+const StaticInfo = React.memo(({cpu, type, os}) => {
     return (
         <Fragment>
             <div className="col-sm-12 inline"><label>CPU信息:</label>
@@ -9,9 +9,6 @@ const StaticInfo = React.memo(({cpu, network, type, os}) => {
             </div>
             <div className="col-sm-12 inline"><label>系统信息:</label>
                 <span>{type} {os}</span>
-            </div>
-            <div className="col-sm-12 inline"><label>流量使用:</label>
-                {network && <span>上传 {network.rx_formatted} | 下载 {network.tx_formatted} </span>}
             </div>
         </Fragment>
     );
@@ -25,7 +22,10 @@ const ServerCard = (props) => {
                 <div className="panel-heading"><h3 className="panel-title">{country} - {description}</h3></div>
                 <div className="panel-body">
                     <div className="row">
-                        <StaticInfo cpu={cpu} network={network} type={type} os={os}/>
+                        <StaticInfo cpu={cpu} type={type} os={os}/>
+                        <div className="col-sm-12 inline"><label>流量使用:</label>
+                            {network && <span>上传 {network.rx_formatted} | 下载 {network.tx_formatted} </span>}
+                        </div>
                         <div className="col-sm-12 inline"><label>在线时长:</label>
                             <span>{uptime}</span></div>
                         <div className="col-sm-12 inline"><label>最后更改 IP:</label>

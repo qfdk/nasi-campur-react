@@ -41,4 +41,5 @@ const Server = () => {
         </div>
     );
 };
-export default React.memo(Server);
+
+export default Server;
