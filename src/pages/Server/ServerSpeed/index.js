@@ -97,7 +97,7 @@ const ServerSpeed = (props) => {
                 <button className={'btn btn-primary'}
                         onClick={btnRefreshHandler}
                         disabled={isLoading}>
-                    <FontAwesomeIcon icon={faSyncAlt} spin={isLoading}/> 点击测速
+                    <FontAwesomeIcon icon={faSyncAlt} spin={isLoading}/> 测速
                 </button>
 
                 <table className="table" style={{marginTop: '20px'}}>
