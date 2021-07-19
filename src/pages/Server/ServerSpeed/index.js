@@ -47,7 +47,7 @@ const lineReducer = (state, action) => {
 ;
 
 const ServerSpeed = (props) => {
-        const [servers, setServers] = useState(props.data);
+        const servers = props.data;
         const [lines, lineDispatch] = useReducer(lineReducer, initLine);
 
         const [isLoading, setIsLoading] = useState(false);
@@ -77,15 +77,12 @@ const ServerSpeed = (props) => {
         };
 
         const fetchData = async () => {
-            const tables = [];
             for (const server of servers) {
-                tables.push(await getServerInfo(server));
+                await getServerInfo(server);
             }
         };
 
         useEffect(() => {
-            // setIsLoading(true);
-            // fetchData().then(r => {setIsLoading(false);});
             lineDispatch({type: 'SET', payload: servers});
         }, []);
 
