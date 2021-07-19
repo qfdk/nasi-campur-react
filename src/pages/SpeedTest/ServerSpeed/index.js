@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useReducer, useState} from 'react';
+import React, {Fragment, useEffect, useReducer, useRef, useState} from 'react';
 import httpRequest from '../../../request';
 import {faSyncAlt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -66,6 +66,7 @@ const ServerSpeed = (props) => {
     const [lines, lineDispatch] = useReducer(lineReducer, initLine);
 
     const [isLoading, setIsLoading] = useState(false);
+    const cancelTokenSource = useRef(null);
 
     const getServerInfo = async (server) => {
         try {
@@ -73,7 +74,7 @@ const ServerSpeed = (props) => {
             const cpt = 1;
             for (let i = 0; i < N; i++) {
                 const date1 = new Date();
-                await httpRequest.get(server.url);
+                await httpRequest.get(server.url, {cancelToken: cancelTokenSource.current.token});
                 const date2 = new Date();
                 const delta = date2 - date1;
                 deltas.push(delta);
@@ -99,13 +100,20 @@ const ServerSpeed = (props) => {
 
     const fetchData = async () => {
         lineDispatch({type: 'RESET'});
+        cancelTokenSource.current = httpRequest.CancelToken.source();
         for (const server of servers) {
             await getServerInfo(server);
         }
+        cancelTokenSource.current = null;
     };
 
     useEffect(() => {
         lineDispatch({type: 'SET', payload: servers});
+        return () => {
+            if (cancelTokenSource.current) {
+                cancelTokenSource.current.cancel('用户停止操作');
+            }
+        };
     }, []);
 
     const btnRefreshHandler = () => {

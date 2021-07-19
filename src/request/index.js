@@ -29,4 +29,7 @@ instance.interceptors.response.use(async data => {
     }
 });
 
+instance.isCancel = axios.isCancel;
+instance.CancelToken = axios.CancelToken;
+
 export default instance;
