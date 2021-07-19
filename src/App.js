@@ -1,4 +1,4 @@
-import React, {Suspense, useEffect} from 'react';
+import React, {Fragment, Suspense, useEffect, useMemo} from 'react';
 import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
@@ -7,7 +7,7 @@ import {lazy} from '@loadable/component';
 
 const Home = lazy(() => import('./pages/Home'));
 const Help = lazy(() => import('./pages/Help'));
-const Server = lazy(() => import('./pages/Server'));
+const Server = lazy(() => import('./pages/ServerMetric'));
 const SpeedTest = lazy(() => import('./pages/SpeedTest'));
 
 const App = () => {
@@ -20,20 +20,27 @@ const App = () => {
             }, 200);
         }
     }, []);
+
+    const styleBody = useMemo(() => {
+        return {marginTop: '65px'};
+    }, []);
+
     return (
-        <Router>
-            <Navbar/>
-            <div style={{marginTop: '65px'}}>
-                <Suspense fallback={<Spinner/>}>
-                    <Route path="/" component={Home} exact/>
-                    <Route path="/help" component={Help} exact/>
-                    <Route path="/servers" component={Server} exact/>
-                    <Route path="/speed-test" component={SpeedTest} exact/>
-                    <Redirect to="/"/>
-                </Suspense>
-            </div>
+        <Fragment>
+            <Router>
+                <Navbar/>
+                <div style={styleBody}>
+                    <Suspense fallback={<Spinner/>}>
+                        <Route path="/" component={Home} exact/>
+                        <Route path="/help" component={Help} exact/>
+                        <Route path="/servers" component={Server} exact/>
+                        <Route path="/speed-test" component={SpeedTest} exact/>
+                        <Redirect to="/"/>
+                    </Suspense>
+                </div>
+            </Router>
             <Footer/>
-        </Router>
+        </Fragment>
     );
 };
 

@@ -1,3 +1,5 @@
+import React from 'react';
+
 const {useEffect, useRef} = require('react');
 
 const useIsMountedRef = () => {

@@ -29,9 +29,16 @@ const SpeedTest = () => {
     const [servers, serversDispatch] = useReducer(serversReducer, initServers);
 
     useEffect(() => {
+        let mounted = true;
+        const cancelToken = httpRequest.CancelToken.source();
+
         httpRequest.get('/api/servers').then(response => {
-            serversDispatch({type: serverConstants.SET, payload: response.data});
-        });
+            mounted && serversDispatch({type: serverConstants.SET, payload: response.data});
+        }).catch((e) => {console.log(e.message);});
+
+        return () => {
+            cancelToken.cancel('取消请求');
+        };
     }, []);
 
     return (

@@ -1,6 +1,6 @@
 import React, {useEffect, useReducer, useRef} from 'react';
 import ServerCard from './ServerCard';
-import useIsMountedRef from '../../../hooks/useIsMountedRef';
+import useIsMountedRef from '../../hooks/useIsMountedRef';
 import mqtt from 'mqtt';
 
 const initMetric = {

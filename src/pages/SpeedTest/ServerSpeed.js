@@ -1,8 +1,9 @@
 import React, {Fragment, useEffect, useReducer, useRef, useState} from 'react';
-import httpRequest from '../../../request';
+import httpRequest from '../../request';
 import {faSyncAlt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import FlipMove from 'react-flip-move';
+import useIsMountedRef from '../../hooks/useIsMountedRef';
 
 const N = 3;
 const Line = React.memo(({number, data}) => {
@@ -64,8 +65,8 @@ const sleep = (time) => {
 const ServerSpeed = (props) => {
     const servers = props.data;
     const [lines, lineDispatch] = useReducer(lineReducer, initLine);
-
     const [isLoading, setIsLoading] = useState(false);
+    const isMountedRef = useIsMountedRef();
     const cancelTokenSource = useRef(null);
 
     const getServerInfo = async (server) => {
@@ -79,7 +80,7 @@ const ServerSpeed = (props) => {
                 const delta = date2 - date1;
                 deltas.push(delta);
                 const newData = {...server, delta, isFinish: (cpt + i) === N, message: `检测第 ${cpt + i}/${N}`};
-                lineDispatch({
+                isMountedRef.current && lineDispatch({
                     type: 'SET_CURRENT', payload: {
                         currentServerDomain: server.domain,
                         newData
@@ -89,7 +90,7 @@ const ServerSpeed = (props) => {
             }
         } catch (e) {
             const newData = {...server, message: `检测失败`};
-            lineDispatch({
+            isMountedRef.current && lineDispatch({
                 type: 'SET_CURRENT', payload: {
                     currentServerDomain: server.domain,
                     newData
@@ -108,16 +109,18 @@ const ServerSpeed = (props) => {
     };
 
     useEffect(() => {
+        isMountedRef.current = true;
         lineDispatch({type: 'SET', payload: servers});
         return () => {
             if (cancelTokenSource.current) {
                 cancelTokenSource.current.cancel('用户停止操作');
             }
+            isMountedRef.current = false;
         };
     }, []);
 
     const btnRefreshHandler = () => {
-        setIsLoading(true);
+        isMountedRef.current && setIsLoading(true);
         fetchData().then(r => {setIsLoading(false);});
     };
     return (
