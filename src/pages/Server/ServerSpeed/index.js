@@ -27,19 +27,24 @@ const lineReducer = (state, action) => {
             case 'SET':
                 return {...state, data: action.payload};
             case 'RESET':
-                return {...state, data: state.data.map(e => {return {...e, isFinish: false, message: '', delta: '-'};})};
+                return {
+                    ...state,
+                    data: state.data.map(e => {return {...e, isFinish: false, message: '', delta: '-'};})
+                };
             case 'SET_CURRENT':
                 const {newData, currentServerDomain} = action.payload;
-                const servers = state.data.map(server => {
-                    if (server.domain === newData.domain) {
-                        return {...newData};
-                    } else {
-                        return server;
-                    }
-                }).sort((a, b) => {
-                    return a.delta - b.delta;
-                });
-                return {...state, currentServerDomain, data: servers};
+                const servers = state.data.map(server =>
+                    server.domain === newData.domain ? {...newData} : server
+                );
+                return {
+                    ...state, currentServerDomain,
+                    data: [
+                        ...servers.filter(s => s.isFinish)
+                        .sort((a, b) => {
+                            return a.delta - b.delta;
+                        }),
+                        ...servers.filter(s => !s.isFinish)]
+                };
             default:
                 return state;
         }
