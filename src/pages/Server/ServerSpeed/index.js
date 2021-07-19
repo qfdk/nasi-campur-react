@@ -3,19 +3,18 @@ import httpRequest from '../../../request';
 import {faSyncAlt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-const Line = ({number, data}) => {
-        return (
-            <Fragment>
-                <th scope="row">{number}</th>
-                <td>{data.country}</td>
-                <td>{data.description}</td>
-                <td className={(data.delta === 9999) ? 'danger' : null}>
-                    {data.isFinish ? `${data.delta} ms` : data.message}
-                </td>
-            </Fragment>
-        );
-    }
-;
+const Line = React.memo(({number, data}) => {
+    return (
+        <Fragment>
+            <th scope="row">{number}</th>
+            <td>{data.country}</td>
+            <td>{data.description}</td>
+            <td className={(data.delta === 9999) ? 'danger' : null}>
+                {data.isFinish ? `${data.delta} ms` : data.message}
+            </td>
+        </Fragment>
+    );
+});
 
 const initLine =
     {
@@ -27,6 +26,8 @@ const lineReducer = (state, action) => {
         switch (action.type) {
             case 'SET':
                 return {...state, data: action.payload};
+            case 'RESET':
+                return {...state, data: state.data.map(e => {return {...e, isFinish: false, message: '', delta: '-'};})};
             case 'SET_CURRENT':
                 const {newData, currentServerDomain} = action.payload;
                 const servers = state.data.map(server => {
@@ -77,6 +78,7 @@ const ServerSpeed = (props) => {
         };
 
         const fetchData = async () => {
+            lineDispatch({type: 'RESET'});
             for (const server of servers) {
                 await getServerInfo(server);
             }
@@ -95,7 +97,7 @@ const ServerSpeed = (props) => {
                 <button className={'btn btn-primary'}
                         onClick={btnRefreshHandler}
                         disabled={isLoading}>
-                    <FontAwesomeIcon icon={faSyncAlt} spin={isLoading}/> 重新测试
+                    <FontAwesomeIcon icon={faSyncAlt} spin={isLoading}/> 点击测速
                 </button>
 
                 <table className="table" style={{marginTop: '20px'}}>
@@ -125,4 +127,4 @@ const ServerSpeed = (props) => {
     }
 ;
 
-export default ServerSpeed;
+export default React.memo(ServerSpeed);
