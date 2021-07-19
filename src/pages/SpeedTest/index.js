@@ -1,7 +1,7 @@
 import React, {useEffect, useReducer} from 'react';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
-import ServerMetric from './ServerMetric';
+import ServerSpeed from './ServerSpeed';
 
 const initServers = {
     isLoading: true,
@@ -25,8 +25,7 @@ const serversReducer = (state, action) => {
     }
 };
 
-
-const Server = () => {
+const SpeedTest = () => {
     const [servers, serversDispatch] = useReducer(serversReducer, initServers);
 
     useEffect(() => {
@@ -40,10 +39,10 @@ const Server = () => {
             <h3>服务器列表</h3>
             {servers.isLoading && <Spinner/>}
             <div style={{marginTop: '20px'}}>
-                {!servers.isLoading && <ServerMetric {...servers}/>}
+                {!servers.isLoading && <ServerSpeed {...servers}/>}
             </div>
         </div>
     );
 };
 
-export default Server;
+export default SpeedTest;

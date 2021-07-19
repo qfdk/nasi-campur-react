@@ -1,6 +1,6 @@
 import React, {Suspense, useEffect} from 'react';
 import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
-import Navbar from './Components/Navbar/Navbar';
+import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Spinner from './widget/Spinner';
 import {lazy} from '@loadable/component';
@@ -8,6 +8,7 @@ import {lazy} from '@loadable/component';
 const Home = lazy(() => import('./pages/Home'));
 const Help = lazy(() => import('./pages/Help'));
 const Server = lazy(() => import('./pages/Server'));
+const SpeedTest = lazy(() => import('./pages/SpeedTest'));
 
 const App = () => {
     useEffect(() => {
@@ -26,7 +27,8 @@ const App = () => {
                 <Suspense fallback={<Spinner/>}>
                     <Route path="/" component={Home} exact/>
                     <Route path="/help" component={Help} exact/>
-                    <Route path="/server" component={Server} exact/>
+                    <Route path="/servers" component={Server} exact/>
+                    <Route path="/speed-test" component={SpeedTest} exact/>
                     <Redirect to="/"/>
                 </Suspense>
             </div>
