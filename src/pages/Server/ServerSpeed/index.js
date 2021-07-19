@@ -90,6 +90,7 @@ const ServerSpeed = (props) => {
             setIsLoading(true);
             fetchData().then(r => {setIsLoading(false);});
         };
+        const statusStyle = {width: '120px;'};
         return (
             <Fragment>
                 <button className={'btn btn-primary'}
@@ -104,7 +105,7 @@ const ServerSpeed = (props) => {
                         <th>#</th>
                         <th>节点国家</th>
                         <th>节点描述</th>
-                        <th>状态</th>
+                        <th style={statusStyle}>状态</th>
                     </tr>
                     </thead>
                     <tbody>
