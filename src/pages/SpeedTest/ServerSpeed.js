@@ -70,6 +70,7 @@ const ServerSpeed = (props) => {
     const cancelTokenSource = useRef(null);
 
     const getServerInfo = async (server) => {
+        let newData = null;
         try {
             const deltas = [];
             const cpt = 1;
@@ -79,17 +80,12 @@ const ServerSpeed = (props) => {
                 const date2 = new Date();
                 const delta = date2 - date1;
                 deltas.push(delta);
-                const newData = {...server, delta, isFinish: (cpt + i) === N, message: `检测第 ${cpt + i}/${N}`};
-                isMountedRef.current && lineDispatch({
-                    type: 'SET_CURRENT', payload: {
-                        currentServerDomain: server.domain,
-                        newData
-                    }
-                });
+                newData = {...server, delta, isFinish: (cpt + i) === N, message: `检测第 ${cpt + i}/${N}`};
                 await sleep(200);
             }
         } catch (e) {
-            const newData = {...server, message: e.message === 'Network Error' ? '网络错误' : e.message};
+            newData = {...server, message: e.message === 'Network Error' ? '网络错误' : e.message};
+        } finally {
             isMountedRef.current && lineDispatch({
                 type: 'SET_CURRENT', payload: {
                     currentServerDomain: server.domain,
