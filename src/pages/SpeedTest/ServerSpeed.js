@@ -12,7 +12,7 @@ const Line = React.memo(({number, data}) => {
             <th scope="row">{number}</th>
             <td>{data.country}</td>
             <td>{data.description}</td>
-            <td className={(data.delta === 9999) ? 'danger' : null}>
+            <td className={data.error ? 'danger' : null}>
                 {data.isFinish ? `${data.delta} ms` : data.message}
             </td>
         </Fragment>
@@ -32,7 +32,8 @@ const lineReducer = (state, action) => {
         case 'RESET':
             return {
                 ...state,
-                data: state.data.map(e => {return {...e, isFinish: false, message: '等待检测...', delta: '-'};})
+                data: state.data.map(
+                    e => {return {...e, isFinish: false, error: false, message: '等待检测...', delta: '-'};})
             };
         case 'SET_CURRENT':
             const {newData, currentServerDomain} = action.payload;
@@ -70,7 +71,6 @@ const ServerSpeed = (props) => {
     const cancelTokenSource = useRef(null);
 
     const getServerInfo = async (server) => {
-        let newData = null;
         try {
             const deltas = [];
             const cpt = 1;
@@ -80,18 +80,33 @@ const ServerSpeed = (props) => {
                 const date2 = new Date();
                 const delta = date2 - date1;
                 deltas.push(delta);
-                newData = {...server, delta, isFinish: (cpt + i) === N, message: `检测第 ${cpt + i}/${N}`};
+                if (isMountedRef.current) {
+                    const newData = {
+                        ...server,
+                        delta,
+                        error: false,
+                        isFinish: (cpt + i) === N,
+                        message: `检测第 ${cpt + i}/${N}`
+                    };
+                    lineDispatch({
+                        type: 'SET_CURRENT', payload: {
+                            currentServerDomain: server.domain,
+                            newData
+                        }
+                    });
+                }
                 await sleep(200);
             }
         } catch (e) {
-            newData = {...server, message: e.message === 'Network Error' ? '网络错误' : e.message};
-        } finally {
-            isMountedRef.current && lineDispatch({
-                type: 'SET_CURRENT', payload: {
-                    currentServerDomain: server.domain,
-                    newData
-                }
-            });
+            if (isMountedRef.current) {
+                const newData = {...server, error: true, message: e.message === 'Network Error' ? '网络错误' : e.message};
+                lineDispatch({
+                    type: 'SET_CURRENT', payload: {
+                        currentServerDomain: server.domain,
+                        newData
+                    }
+                });
+            }
         }
     };
 
