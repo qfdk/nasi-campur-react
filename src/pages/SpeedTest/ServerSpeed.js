@@ -64,7 +64,7 @@ const sleep = (time) => {
 
 const ServerSpeed = (props) => {
     const servers = props.data;
-    const [lines, lineDispatch] = useReducer(lineReducer, initLine);
+    const [lines, lineDispatch] = useReducer(lineReducer, {...initLine, data: servers});
     const [isLoading, setIsLoading] = useState(false);
     const isMountedRef = useIsMountedRef();
     const cancelTokenSource = useRef(null);
@@ -89,7 +89,7 @@ const ServerSpeed = (props) => {
                 await sleep(200);
             }
         } catch (e) {
-            const newData = {...server, message: `检测失败`};
+            const newData = {...server, message: e.message === 'Network Error' ? '网络错误' : e.message};
             isMountedRef.current && lineDispatch({
                 type: 'SET_CURRENT', payload: {
                     currentServerDomain: server.domain,
@@ -110,25 +110,25 @@ const ServerSpeed = (props) => {
 
     useEffect(() => {
         isMountedRef.current = true;
-        lineDispatch({type: 'SET', payload: servers});
         return () => {
             if (cancelTokenSource.current) {
                 cancelTokenSource.current.cancel('用户停止操作');
             }
             isMountedRef.current = false;
         };
-    }, []);
+    }, [isMountedRef]);
 
-    const btnRefreshHandler = () => {
+    const btnRefreshHandler = async () => {
         isMountedRef.current && setIsLoading(true);
-        fetchData().then(r => {setIsLoading(false);});
+        await fetchData();
+        isMountedRef.current && setIsLoading(false);
     };
     return (
         <Fragment>
             <button className={'btn btn-primary'}
                     onClick={btnRefreshHandler}
                     disabled={isLoading}>
-                <FontAwesomeIcon icon={faSyncAlt} spin={isLoading}/> 测速
+                <FontAwesomeIcon icon={faSyncAlt} spin={isLoading}/> 响应测试
             </button>
 
             <table className="table" style={{marginTop: '20px'}}>

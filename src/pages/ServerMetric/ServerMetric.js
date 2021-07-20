@@ -38,7 +38,7 @@ const ServerMetric = (props) => {
         client.current.on('connect', () => {
             console.log('订阅服务器连接成功');
             // 订阅事件
-            for (const server of metric.data) {
+            for (const server of props.data) {
                 client.current.subscribe(server.domain, {qos: 0}, (error) => {
                     if (error) {
                         console.log(`${server.domain} 订阅失败!`);
@@ -64,7 +64,7 @@ const ServerMetric = (props) => {
                 console.log('MQTT client 关闭!');
             });
         };
-    }, []);
+    }, [isMountedRef, props.data]);
 
     return (
         <div className="row">

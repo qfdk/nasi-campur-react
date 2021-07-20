@@ -1,4 +1,4 @@
-import React, {Fragment, useCallback} from 'react';
+import React, {Fragment} from 'react';
 import './server.css';
 
 const StaticInfo = React.memo(({cpu, type, os}) => {

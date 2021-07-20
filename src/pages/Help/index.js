@@ -33,9 +33,9 @@ const Help = () => {
             <h4>3. 添加服务器</h4>
             <p>最简单的方式，点击按钮添加服务器.(<span className="text-danger">如果没有弹出界面</span>，请手动打开第一步下载的 app 扫描第 2 步中显示的二维码)</p>
             <p>输入弹出框可以自定义名字，这里用 Go 来举例子</p>
-            <img style={{height: '400px'}} className="img-responsive img-thumbnail"
+            <img style={{height: '400px'}} className="img-responsive img-thumbnail" alt="设置 1"
                  src="https://i.loli.net/2021/01/31/ubUcegZK9v1SN8L.jpg"/>
-            <img style={{height: '400px'}} className="img-responsive img-thumbnail"
+            <img style={{height: '400px'}} className="img-responsive img-thumbnail" alt="设置 2"
                  src="https://i.loli.net/2021/01/31/Lj59rnhKVA8HpWd.jpg"/>
             <p>点击连接，现在您可以畅快的上网了 !</p>
             <hr/>
