@@ -33,7 +33,6 @@ const ServerMetric = (props) => {
     const [metric, metricDispatch] = useReducer(metricReducer, {...initMetric, data: props.data}, undefined);
 
     useEffect(() => {
-        isMountedRef.current = true;
         client.current = mqtt.connect('wss://mqtt.qfdk.me/mqtt');
         client.current.on('connect', () => {
             console.log('订阅服务器连接成功');
@@ -59,7 +58,6 @@ const ServerMetric = (props) => {
             });
         });
         return () => {
-            isMountedRef.current = false;
             client.current.end(() => {
                 console.log('MQTT client 关闭!');
             });

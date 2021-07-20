@@ -1,7 +1,7 @@
 const {useEffect, useRef} = require('react');
 
 const useIsMountedRef = () => {
-    const isMountedRef = useRef(null);
+    const isMountedRef = useRef(false);
     useEffect(() => {
         isMountedRef.current = true;
         return () => isMountedRef.current = false;

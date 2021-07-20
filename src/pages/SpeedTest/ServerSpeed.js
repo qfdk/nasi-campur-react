@@ -55,7 +55,7 @@ const lineReducer = (state, action) => {
 };
 
 const sleep = (time) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         setTimeout(() => {
             resolve();
         }, time);
@@ -105,14 +105,12 @@ const ServerSpeed = (props) => {
     };
 
     useEffect(() => {
-        isMountedRef.current = true;
         return () => {
             if (cancelTokenSource.current) {
                 cancelTokenSource.current.cancel('用户停止操作');
             }
-            isMountedRef.current = false;
         };
-    }, [isMountedRef]);
+    }, []);
 
     const btnRefreshHandler = async () => {
         isMountedRef.current && setIsLoading(true);
