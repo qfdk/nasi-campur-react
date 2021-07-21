@@ -1,7 +1,6 @@
-import React, {Fragment, Suspense, useReducer} from 'react';
+import React, {Fragment, lazy, Suspense, useReducer} from 'react';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
-import {lazy} from '@loadable/component';
 
 const UserInfo = lazy(() => import('./UserInfo'));
 

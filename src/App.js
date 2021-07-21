@@ -1,9 +1,8 @@
-import React, {Fragment, Suspense, useEffect, useMemo} from 'react';
+import React, {Fragment, lazy, Suspense, useEffect, useMemo} from 'react';
 import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Spinner from './widget/Spinner';
-import {lazy} from '@loadable/component';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = lazy(() => import('./pages/Home'));
