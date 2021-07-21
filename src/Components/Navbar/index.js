@@ -1,15 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faAddressBook, faHome, faServer, faTachometerAlt} from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const menuClickHandler = () => {
+        setIsOpen(s => !s);
+    };
+
     return (
         <nav className="navbar navbar-fixed-top navbar-inverse">
             <div className="container">
                 <div className="navbar-header">
-                    <button type="button" className="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <button type="button"
+                            className={isOpen ? 'navbar-toggle' : 'navbar-toggle collapsed'}
+                            data-toggle="collapse"
+                            onClick={menuClickHandler}
+                            data-target="menuList" aria-expanded={!isOpen}>
                         <span className="sr-only">Toggle navigation</span>
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
@@ -20,7 +29,7 @@ const Navbar = () => {
                     </NavLink>
                 </div>
 
-                <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div className={isOpen ? 'collapse navbar-collapse in' : 'collapse navbar-collapse'} id="menuList">
                     <ul className="nav navbar-nav navbar-right">
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/" exact>
@@ -39,7 +48,6 @@ const Navbar = () => {
                                 <FontAwesomeIcon icon={faServer}/> 服务器列表
                             </NavLink>
                         </li>
-
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/speed-test" exact>

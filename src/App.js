@@ -5,11 +5,6 @@ import Footer from './Components/Footer';
 import Spinner from './widget/Spinner';
 import {lazy} from '@loadable/component';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import $ from 'jquery/dist/jquery.min';
-
-window.$ = $;
-window.jQuery = $;
-require('bootstrap/dist/js/bootstrap.min');
 
 const Home = lazy(() => import('./pages/Home'));
 const Help = lazy(() => import('./pages/Help'));
