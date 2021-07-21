@@ -3,13 +3,13 @@ import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Spinner from './widget/Spinner';
-import loadable, {lazy} from '@loadable/component';
+import {lazy} from '@loadable/component';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery/dist/jquery.min';
 
 window.$ = $;
 window.jQuery = $;
-loadable(() => require('bootstrap/dist/js/bootstrap.min'));
+require('bootstrap/dist/js/bootstrap.min');
 
 const Home = lazy(() => import('./pages/Home'));
 const Help = lazy(() => import('./pages/Help'));
