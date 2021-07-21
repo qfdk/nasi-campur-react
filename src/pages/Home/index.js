@@ -1,7 +1,9 @@
-import React, {Fragment, useReducer} from 'react';
+import React, {Fragment, Suspense, useReducer} from 'react';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
-import UserInfo from './UserInfo';
+import {lazy} from '@loadable/component';
+
+const UserInfo = lazy(() => import('./UserInfo'));
 
 const initUserInfo = {
     wechatName: '',
@@ -76,7 +78,10 @@ const SearchInput = React.memo(() => {
                 </div>
             </div>
             {user.isLoading && <Spinner/>}
-            {!user.isLoading && user.data && <UserInfo data={user.data}/>}
+            {!user.isLoading && user.data &&
+            <Suspense fallback={<Spinner/>}>
+                <UserInfo data={user.data}/>
+            </Suspense>}
         </Fragment>
     );
 });
