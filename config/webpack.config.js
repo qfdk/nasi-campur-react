@@ -642,7 +642,12 @@ module.exports = function (webpackEnv) {
         }),
       // 生产环境减少无用的 css
       isEnvProduction && new PurgecssPlugin({
-        paths: glob.sync(`${paths.appSrc}/**/*`,  { nodir: true }),
+        paths: [paths.appHtml, ...glob.sync(`${paths.appSrc}/**/*`, { nodir: true })],
+        safelist:{
+            standard: [/label/, /^json-/],
+            deep: [],
+            greedy: []
+        }
       }),
       // Generate an asset manifest file with the following content:
       // - "files" key: Mapping of all asset filenames to their corresponding

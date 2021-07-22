@@ -1,7 +1,5 @@
 import React, {Fragment, useEffect, useReducer, useRef, useState} from 'react';
 import httpRequest from '../../request';
-import {faSyncAlt} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import FlipMove from 'react-flip-move';
 import useIsMountedRef from '../../hooks/useIsMountedRef';
 
@@ -137,7 +135,7 @@ const ServerSpeed = (props) => {
             <button className={'btn btn-primary'}
                     onClick={btnRefreshHandler}
                     disabled={isLoading}>
-                <FontAwesomeIcon icon={faSyncAlt} spin={isLoading}/> 响应测试
+                <i className={isLoading ? 'fas fa-sync-alt fa-spin' : 'fas fa-sync-alt'}/> 响应测试
             </button>
 
             <table className="table" style={{marginTop: '20px'}}>

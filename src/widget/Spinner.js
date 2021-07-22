@@ -1,11 +1,9 @@
 import React from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 
 const Spinner = () => {
     return (
         <div className="fa-3x text-center">
-            <FontAwesomeIcon icon={faSpinner} spin/>
+            <i className="fas fa-spinner fa-spin"></i>
         </div>
     );
 };

@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink} from 'react-router-dom';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faAddressBook, faHome, faServer, faTachometerAlt} from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -41,25 +39,25 @@ const Navbar = () => {
                     <ul className="nav navbar-nav navbar-right">
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/" exact>
-                                <FontAwesomeIcon icon={faHome}/> 主页
+                                <i className={"fa fa-home"}></i> 主页
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/help" exact>
-                                <FontAwesomeIcon icon={faAddressBook}/> 帮助
+                                <i className={"fa fa-address-book"}></i> 帮助
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/servers" exact>
-                                <FontAwesomeIcon icon={faServer}/> 服务器列表
+                                <i className={"fa fa-server"}></i> 服务器列表
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/speed-test" exact>
-                                <FontAwesomeIcon icon={faTachometerAlt}/> 测速
+                                <i className={"fa fa-tachometer-alt"}></i>  测速
                             </NavLink>
                         </li>
                     </ul>
