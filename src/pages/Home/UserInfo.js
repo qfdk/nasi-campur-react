@@ -195,14 +195,14 @@ const UserInfo = ({data}) => {
                                     <div className="form-group">
                                         <label className="col-sm-2 control-label">Clash 配置文件</label>
                                         <div className="col-sm-10">
-                                            <input type="text" className="form-control" value={getSubUrl(v2rayUrl, ssrUrl)}
+                                            <input type="text" className="form-control" value={getSubUrl(v2rayUrl, `ssr://${containerState.qrCode}`)}
                                                    disabled={true}/>
                                         </div>
                                         {loadingShotUrl ? <Spinner/> :
                                             <div className={'col-sm-12 text-center'} style={{marginTop: '20px'}}>
                                                 <button className="btn btn-primary"
                                                         onClick={importBtnHandler}
-                                                        href={getSubUrl(v2rayUrl, ssrUrl)}><i className={'fa fa-seedling'}></i> 一键导入
+                                                        href={getSubUrl(v2rayUrl, `ssr://${containerState.qrCode}`)}><i className={'fa fa-seedling'}></i> 一键导入
                                                     clash
                                                 </button>
                                             </div>}
