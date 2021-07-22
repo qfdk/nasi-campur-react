@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faAddressBook, faHome, faServer, faTachometerAlt} from '@fortawesome/free-solid-svg-icons';
@@ -6,7 +6,15 @@ import {faAddressBook, faHome, faServer, faTachometerAlt} from '@fortawesome/fre
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const menuClickHandler = () => {
+    useEffect(() => {
+        document.addEventListener('click', () => {
+            setIsOpen(false);
+        });
+    }, []);
+
+    const menuClickHandler = (e) => {
+        // 防止冒泡传到父容器
+        e.nativeEvent.stopImmediatePropagation();
         setIsOpen(s => !s);
     };
 
