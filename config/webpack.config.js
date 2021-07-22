@@ -644,7 +644,7 @@ module.exports = function (webpackEnv) {
       isEnvProduction && new PurgecssPlugin({
         paths: [paths.appHtml, ...glob.sync(`${paths.appSrc}/**/*`, { nodir: true })],
         safelist:{
-            standard: [/label/, /^json-/],
+            standard: [/label/,/alert/, /^json-/],
             deep: [],
             greedy: []
         }
