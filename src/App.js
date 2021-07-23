@@ -4,12 +4,13 @@ import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Spinner from './widget/Spinner';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css'
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Home = lazy(() => import('./pages/Home'));
 const Help = lazy(() => import('./pages/Help'));
 const Server = lazy(() => import('./pages/ServerMetric'));
 const SpeedTest = lazy(() => import('./pages/SpeedTest'));
+
 const App = () => {
     useEffect(() => {
         const loading = document.getElementById('i-loading');
