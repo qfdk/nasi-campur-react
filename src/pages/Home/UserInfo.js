@@ -1,60 +1,20 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import './user-info.css';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
 import Alert from '../../widget/Alert';
-import qs from 'qs';
 
 const createMarkup = (html) => {
     return {__html: html};
 };
 
-const createUrlParams = (v2rayUrl, ssrUrl) => {
-    const clashSubUrls = [];
-    if (v2rayUrl) {
-        clashSubUrls.push(v2rayUrl);
-    }
-    if (ssrUrl) {
-        clashSubUrls.push(ssrUrl);
-    }
-    return clashSubUrls.join('|');
-};
-const getSubUrl = (v2rayUrl, ssrUrl) => {
-    return `https://sub.qfdk.me/sub?target=clash&insert=false&new_name=true&url=${encodeURIComponent(
-        createUrlParams(v2rayUrl, ssrUrl))}`;
-};
 const UserInfo = ({data}) => {
-        const {user, traffic, endTime, v2rayImg, v2rayUrl, ssrUrl, ssrImg, v2ray, error} = data;
+        const {user, traffic, endTime, v2rayImg, ssrImg, v2ray, error} = data;
         const [loading, setLoading] = useState(false);
-        const [loadingShotUrl, setLoadingShotUrl] = useState(false);
-        const [customShortSubUrl, setCustomShortSubUrl] = useState(null);
 
         const importBtnHandler = () => {
-            window.open(`clash://install-config?url=${customShortSubUrl}`);
+            window.open(`clash://install-config?url=https://fr.qfdk.me/users/sub/${user.wechatName}`);
         };
-
-        useEffect(() => {
-            if (data.user && (data.user.hasV2ray || data.user.hasSSR)) {
-                setLoadingShotUrl(true);
-                httpRequest.post(`https://suo.yt/short`,
-                    qs.stringify({longUrl: btoa(getSubUrl(data.v2rayUrl, data.ssrUrl))}), {
-                        header: {
-                            'Content-Type': 'application/form-data; charset=utf-8'
-                        }
-                    })
-                .then(res => {
-                    if (res.data.Code === 1 && res.data.ShortUrl !== '') {
-                        const customShortSubUrl = res.data.ShortUrl;
-                        setCustomShortSubUrl(() => customShortSubUrl);
-                    }
-                })
-                .catch(() => {
-                    console.log('error');
-                }).finally(() => {
-                    setLoadingShotUrl(false);
-                });
-            }
-        }, [data]);
 
         const [containerState, setContainerState] = useState(error ? {} :
             {
@@ -67,7 +27,6 @@ const UserInfo = ({data}) => {
         const reCreateContainer = (uid) => {
             setLoading(true);
             httpRequest.get('/users/reCreateContainer', {params: {uid, json: true}}).then(response => {
-                setLoading(false);
                 const {
                     containerPort,
                     containerStatus,
@@ -83,6 +42,10 @@ const UserInfo = ({data}) => {
                         qrCode
                     };
                 });
+            }).catch(e => {
+                console.log(e);
+            }).finally(() => {
+                setLoading(false);
             });
         };
 
@@ -184,10 +147,10 @@ const UserInfo = ({data}) => {
                         </div>
                     </div>}
                     {
-                        !loading && (user.hasV2ray || user.hasSSR) && <div className="panel panel-success">
+                        (user.hasV2ray || user.hasSSR) && <div className="panel panel-success">
                             <div className="panel-heading text-center">
                                 <h3 className="panel-title">
-                                    <span>订阅设置</span>
+                                    <span>懒人订阅设置</span>
                                 </h3>
                             </div>
                             <div className="panel-body">
@@ -195,17 +158,17 @@ const UserInfo = ({data}) => {
                                     <div className="form-group">
                                         <label className="col-sm-2 control-label">Clash 配置文件</label>
                                         <div className="col-sm-10">
-                                            <input type="text" className="form-control" value={getSubUrl(v2rayUrl, `ssr://${containerState.qrCode}`)}
+                                            <input type="text" className="form-control"
+                                                   value={`https://fr.qfdk.me/users/sub/${user.wechatName}`}
                                                    disabled={true}/>
                                         </div>
-                                        {loadingShotUrl ? <Spinner/> :
-                                            <div className={'col-sm-12 text-center'} style={{marginTop: '20px'}}>
-                                                <button className="btn btn-primary"
-                                                        onClick={importBtnHandler}
-                                                        href={getSubUrl(v2rayUrl, `ssr://${containerState.qrCode}`)}><i className={'fa fa-seedling'}></i> 一键导入
-                                                    clash
-                                                </button>
-                                            </div>}
+
+                                        <div className={'col-sm-12 text-center'} style={{marginTop: '20px'}}>
+                                            <button className="btn btn-primary"
+                                                    onClick={importBtnHandler}>
+                                                <i className={'fa fa-seedling'}></i> 一键导入 clash
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
 

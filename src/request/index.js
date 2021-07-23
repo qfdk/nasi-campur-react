@@ -3,7 +3,8 @@ import qs from 'qs';
 
 let instance = axios.create({
     baseURL: 'https://fr.qfdk.me', // 这里是本地express启动的服务地址
-    timeout: 5000 // request timeout
+    // baseURL: 'http://localhost:3000', // 这里是本地express启动的服务地址
+    timeout: 10000 // request timeout
 });
 instance.interceptors.request.use(config => {
     if (config.method === 'post' || config.method === 'put' || config.method === 'delete') {
