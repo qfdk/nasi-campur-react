@@ -27,6 +27,7 @@ const serversReducer = (state, action) => {
 
 
 const Server = () => {
+    // console.log("Server Render");
     const [servers, serversDispatch] = useReducer(serversReducer, initServers);
 
     useEffect(() => {

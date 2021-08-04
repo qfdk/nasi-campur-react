@@ -17,11 +17,10 @@ const Line = React.memo(({number, data}) => {
     );
 });
 
-const initLine =
-    {
-        data: [],
-        currentServerDomain: null
-    };
+const initLine = {
+    data: [],
+    currentServerDomain: null
+};
 
 const lineReducer = (state, action) => {
     switch (action.type) {
@@ -50,7 +49,6 @@ const lineReducer = (state, action) => {
         default:
             return state;
     }
-
 };
 
 const sleep = (time) => {
@@ -70,14 +68,12 @@ const ServerSpeed = (props) => {
 
     const getServerInfo = async (server) => {
         try {
-            const deltas = [];
             const cpt = 1;
             for (let i = 0; i < N; i++) {
                 const date1 = new Date();
                 await httpRequest.get(server.url, {cancelToken: cancelTokenSource.current.token});
                 const date2 = new Date();
                 const delta = date2 - date1;
-                deltas.push(delta);
                 if (isMountedRef.current) {
                     const newData = {
                         ...server,

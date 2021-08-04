@@ -26,6 +26,8 @@ const serversReducer = (state, action) => {
 };
 
 const SpeedTest = () => {
+    // console.log("SpeedTest Render");
+
     const [servers, serversDispatch] = useReducer(serversReducer, initServers);
 
     useEffect(() => {
