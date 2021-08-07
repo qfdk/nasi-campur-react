@@ -26,9 +26,9 @@ const Navbar = () => {
                             onClick={menuClickHandler}
                             data-target="menuList" aria-expanded={!isOpen}>
                         <span className="sr-only">Toggle navigation</span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
+                        <span className="icon-bar"/>
+                        <span className="icon-bar"/>
+                        <span className="icon-bar"/>
                     </button>
                     <NavLink className="navbar-brand" to="/" exact>
                         🚀 准备好了吗 ？
@@ -39,25 +39,25 @@ const Navbar = () => {
                     <ul className="nav navbar-nav navbar-right">
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/" exact>
-                                <i className={"fa fa-home"}></i> 主页
+                                <i className={'fa fa-home'}/> 主页
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/help" exact>
-                                <i className={"fa fa-address-book"}></i> 帮助
+                                <i className={'fa fa-address-book'}/> 帮助
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/servers" exact>
-                                <i className={"fa fa-server"}></i> 服务器列表
+                                <i className={'fa fa-server'}/> 服务器列表
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/speed-test" exact>
-                                <i className={"fa fa-tachometer-alt"}></i>  测速
+                                <i className={'fa fa-tachometer-alt'}/>  测速
                             </NavLink>
                         </li>
                     </ul>
