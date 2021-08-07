@@ -163,8 +163,8 @@ const UserInfo = ({data}) => {
                             </h3>
                         </div>
                         <div className="panel-body">
+                            <label>Clash 配置文件:</label>
                             <div className="input-group">
-                                <div className="input-group-addon">Clash 配置文件:</div>
                                 <input type="text" className="form-control"
                                        style={{minWidth: '200px'}}
                                        ref={clashRef}
