@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useRef, useState} from 'react';
 import './user-info.css';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
@@ -11,6 +11,15 @@ const createMarkup = (html) => {
 const UserInfo = ({data}) => {
     const {user, traffic, endTime, v2rayImg, ssrImg, v2ray, error} = data;
     const [loading, setLoading] = useState(false);
+    const clashRef = useRef(null);
+
+    const copyToClipboard = (e) => {
+        clashRef.current.select();
+        document.execCommand('copy');
+        // This is just personal preference.
+        // I prefer to not show the the whole text area selected.
+        e.target.focus();
+    };
 
     const importBtnHandler = () => {
         window.open(`clash://install-config?url=https://fr.qfdk.me/users/sub/${user.wechatName}`);
@@ -154,24 +163,24 @@ const UserInfo = ({data}) => {
                             </h3>
                         </div>
                         <div className="panel-body">
-                            <div className={'row'}>
-                                <div className="form-group">
-                                    <label className="col-sm-2 control-label">Clash 配置文件</label>
-                                    <div className="col-sm-10">
-                                        <input type="text" className="form-control"
-                                               value={`https://fr.qfdk.me/users/sub/${user.wechatName}`}
-                                               disabled={true}/>
-                                    </div>
-
-                                    <div className={'col-sm-12 text-center'} style={{marginTop: '20px'}}>
-                                        <button className="btn btn-primary"
-                                                onClick={importBtnHandler}>
-                                            <i className={'fa fa-seedling'}/> 一键导入 clash
-                                        </button>
-                                    </div>
+                            <div className="input-group">
+                                <div className="input-group-addon">Clash 配置文件:</div>
+                                <input type="text" className="form-control"
+                                       style={{minWidth: '200px'}}
+                                       ref={clashRef}
+                                       readOnly={true}
+                                       defaultValue={`https://fr.qfdk.me/users/sub/${user.wechatName}`}
+                                />
+                                <div className="input-group-btn">
+                                    <button className="btn btn-primary" onClick={copyToClipboard}>复制</button>
                                 </div>
                             </div>
-
+                            <button className="btn btn-primary"
+                                    onClick={importBtnHandler}
+                                    style={{marginTop: '10px'}}
+                            >
+                                <i className={'fa fa-seedling'}/> 一键导入 clash
+                            </button>
                         </div>
                     </div>
                 }

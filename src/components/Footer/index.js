@@ -5,9 +5,8 @@ const Footer = () => {
         <div className="container">
             <hr/>
             <footer className="bs-docs-footer">
-                <b>Designed and built</b> with all the ❤ in the world by
-                <a href="https://qfdk.me" target="_blank" rel="noreferrer" > @qfdk</a>.
-
+                <b>Build</b> with all the ❤ by
+                <a href="https://qfdk.me" target="_blank" rel="noreferrer" > @qfdk</a>
                 <p>Code licensed <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank"
                                     rel="noreferrer">MIT</a>, docs <a
                     href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noreferrer">CC BY
