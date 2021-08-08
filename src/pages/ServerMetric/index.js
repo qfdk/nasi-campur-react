@@ -2,6 +2,7 @@ import React, {useEffect, useReducer} from 'react';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
 import ServerMetric from './ServerMetric';
+// const ServerMetric = lazy(() => import('./ServerMetric'));
 
 const initServers = {
     isLoading: true,
@@ -24,7 +25,6 @@ const serversReducer = (state, action) => {
             return state;
     }
 };
-
 
 const Server = () => {
     // console.log("Server Render");

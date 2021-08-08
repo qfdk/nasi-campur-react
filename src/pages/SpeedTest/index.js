@@ -2,6 +2,7 @@ import React, {useEffect, useReducer} from 'react';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
 import ServerSpeed from './ServerSpeed';
+// const ServerSpeed = lazy(() => import('./ServerSpeed'));
 
 const initServers = {
     isLoading: true,

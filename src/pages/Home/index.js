@@ -1,6 +1,6 @@
-import React from 'react';
-import SearchInput from './SearchInput';
-
+import React, {lazy} from 'react';
+// import SearchInput from './SearchInput';
+const SearchInput = lazy(() => import('./SearchInput'));
 const Home = () => {
     return (
         <div className="container">
