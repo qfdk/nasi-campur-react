@@ -44,12 +44,6 @@ const Navbar = () => {
                         </li>
 
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/help" exact>
-                                <i className={'fa fa-address-book'}/> 帮助
-                            </NavLink>
-                        </li>
-
-                        <li className="nav-item">
                             <NavLink className="nav-link" to="/servers" exact>
                                 <i className={'fa fa-server'}/> 服务器列表
                             </NavLink>
@@ -58,6 +52,12 @@ const Navbar = () => {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/speed-test" exact>
                                 <i className={'fa fa-tachometer-alt'}/>  测速
+                            </NavLink>
+                        </li>
+
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/help" exact>
+                                <i className={'fa fa-address-book'}/> 帮助
                             </NavLink>
                         </li>
                     </ul>
