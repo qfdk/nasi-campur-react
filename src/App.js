@@ -18,7 +18,7 @@ const App = () => {
             setTimeout(() => {
                 loading.setAttribute('class', 'i-loading-out');
                 loading.style.display = 'none';
-            }, 666);
+            }, 300);
         }
     }, []);
 
