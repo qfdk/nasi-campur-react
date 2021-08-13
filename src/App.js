@@ -40,6 +40,7 @@ const App = () => {
                     </Suspense>
                 </div>
             </Router>
+            <hr/>
             <Footer/>
         </div>
     );
