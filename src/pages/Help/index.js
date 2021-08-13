@@ -1,7 +1,9 @@
 import React from 'react';
+import Footer from '../../components/Footer';
 
 const Help = () => {
     return (
+        <>
         <div className="container">
             <h3>帮助指引</h3>
             <h4>使用前请对照是否满足以下条件</h4>
@@ -61,6 +63,8 @@ const Help = () => {
                 <del>Windows(不提供技术支持，类比iPhone设置)</del>
             </h4>
         </div>
+            <Footer/>
+        </>
     );
 };
 export default React.memo(Help);

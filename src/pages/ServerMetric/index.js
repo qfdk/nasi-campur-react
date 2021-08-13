@@ -2,6 +2,7 @@ import React, {Fragment, useEffect, useReducer} from 'react';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
 import ServerMetric from './ServerMetric';
+import Footer from '../../components/Footer';
 // const ServerMetric = lazy(() => import('./ServerMetric'));
 
 const initServers = {
@@ -43,6 +44,7 @@ const Server = () => {
             <div style={{marginTop: '20px'}}>
                 {!servers.isLoading && <ServerMetric {...servers}/>}
             </div>
+            <Footer/>
         </Fragment>
     );
 };
