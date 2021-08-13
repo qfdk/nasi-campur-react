@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer} from 'react';
+import React, {Fragment, useEffect, useReducer} from 'react';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
 import ServerSpeed from './ServerSpeed';
@@ -45,13 +45,13 @@ const SpeedTest = () => {
     }, []);
 
     return (
-        <div className="container">
+        <Fragment>
             <h3>服务器列表</h3>
             {servers.isLoading && <Spinner/>}
             <div style={{marginTop: '20px'}}>
                 {!servers.isLoading && <ServerSpeed {...servers}/>}
             </div>
-        </div>
+        </Fragment>
     );
 };
 

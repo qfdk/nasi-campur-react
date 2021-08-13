@@ -1,4 +1,4 @@
-import React, {Fragment, lazy, Suspense, useEffect, useMemo} from 'react';
+import React, {lazy, Suspense, useEffect, useMemo} from 'react';
 import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -27,7 +27,7 @@ const App = () => {
     }, []);
 
     return (
-        <Fragment>
+        <div className="container">
             <Router>
                 <Navbar/>
                 <div style={styleBody}>
@@ -41,7 +41,7 @@ const App = () => {
                 </div>
             </Router>
             <Footer/>
-        </Fragment>
+        </div>
     );
 };
 

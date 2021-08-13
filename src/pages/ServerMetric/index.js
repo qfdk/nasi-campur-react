@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer} from 'react';
+import React, {Fragment, useEffect, useReducer} from 'react';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
 import ServerMetric from './ServerMetric';
@@ -37,13 +37,13 @@ const Server = () => {
     }, []);
 
     return (
-        <div className="container">
+        <Fragment>
             <h3>服务器列表</h3>
             {servers.isLoading && <Spinner/>}
             <div style={{marginTop: '20px'}}>
                 {!servers.isLoading && <ServerMetric {...servers}/>}
             </div>
-        </div>
+        </Fragment>
     );
 };
 
