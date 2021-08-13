@@ -15,10 +15,10 @@ const App = () => {
     useEffect(() => {
         const loading = document.getElementById('i-loading');
         if (loading) {
-            loading.setAttribute('class', 'i-loading-out');
             setTimeout(() => {
+                loading.setAttribute('class', 'i-loading-out');
                 loading.style.display = 'none';
-            }, 200);
+            }, 100);
         }
     }, []);
 
