@@ -2,7 +2,6 @@ import React, {Fragment, useEffect, useReducer} from 'react';
 import httpRequest from '../../request';
 import Spinner from '../../widget/Spinner';
 import ServerSpeed from './ServerSpeed';
-import Footer from '../../components/Footer';
 // const ServerSpeed = lazy(() => import('./ServerSpeed'));
 
 const initServers = {
@@ -52,8 +51,7 @@ const SpeedTest = () => {
             <div style={{marginTop: '20px'}}>
                 {!servers.isLoading && <ServerSpeed {...servers}/>}
             </div>
-            <Footer/>
-        </Fragment>
+            µ </Fragment>
     );
 };
 
