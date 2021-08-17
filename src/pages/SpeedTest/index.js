@@ -51,7 +51,7 @@ const SpeedTest = () => {
             <div style={{marginTop: '20px'}}>
                 {!servers.isLoading && <ServerSpeed {...servers}/>}
             </div>
-            µ </Fragment>
+        </Fragment>
     );
 };
 
