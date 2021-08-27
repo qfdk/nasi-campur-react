@@ -1,5 +1,5 @@
 import React, {lazy, Suspense, useEffect, useMemo} from 'react';
-import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Spinner from './widget/Spinner';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -33,10 +33,10 @@ const App = () => {
                 <div style={styleBody}>
                     <Suspense fallback={<Spinner/>}>
                         <Route path="/" component={Home} exact/>
-                        <Route path="/help" component={Help} exact/>
-                        <Route path="/servers" component={Server} exact/>
-                        <Route path="/speed-test" component={SpeedTest} exact/>
-                        <Redirect to="/"/>
+                        <Route path="/help" component={Help}/>
+                        <Route path="/servers" component={Server}/>
+                        <Route path="/speed-test" component={SpeedTest}/>
+                        {/*<Redirect to="/"/>*/}
                     </Suspense>
                 </div>
             </Router>
