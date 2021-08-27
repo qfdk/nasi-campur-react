@@ -33,9 +33,9 @@ const App = () => {
                 <div style={styleBody}>
                     <Suspense fallback={<Spinner/>}>
                         <Route path="/" component={Home} exact/>
-                        <Route path="/help" component={Help}/>
-                        <Route path="/servers" component={Server}/>
-                        <Route path="/speed-test" component={SpeedTest}/>
+                        <Route path="/help" component={Help} exact/>
+                        <Route path="/servers" component={Server} exact/>
+                        <Route path="/speed-test" component={SpeedTest} exact/>
                         {/*<Redirect to="/"/>*/}
                     </Suspense>
                 </div>
