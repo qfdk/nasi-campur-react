@@ -1,5 +1,5 @@
 import React, {lazy, Suspense, useEffect, useMemo} from 'react';
-import {HashRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Spinner from './widget/Spinner';
 import 'bootstrap/dist/css/bootstrap.min.css';
