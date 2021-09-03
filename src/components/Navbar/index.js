@@ -31,7 +31,7 @@ const Navbar = () => {
                         <span className="icon-bar"/>
                     </button>
                     <NavLink className="navbar-brand" to="/" exact>
-                        🚀 准备好了吗 ？
+                        🚀 准备好了吗 ?
                     </NavLink>
                 </div>
 
@@ -51,7 +51,7 @@ const Navbar = () => {
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/speed-test" exact>
-                                <i className={'fa fa-tachometer-alt'}/>  测速
+                                <i className={'fa fa-tachometer-alt'}/> 测速
                             </NavLink>
                         </li>
 
