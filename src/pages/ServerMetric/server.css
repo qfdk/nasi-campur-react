@@ -30,10 +30,10 @@
 }
 
 .usageLabel {
-    width: 94px;
+    width: 30%;
 }
 
 .usageProcess {
-    width: 230px;
+    width: 70%;
     float: right;
 }

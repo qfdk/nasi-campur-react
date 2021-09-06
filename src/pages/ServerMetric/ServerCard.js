@@ -35,7 +35,7 @@ const ServerCard = (props) => {
                                 <div className="progress">
                                     <div className="progress-placeholder">CPU : {cpu.usage}%</div>
                                     <div className="progress-text">CPU : {cpu.usage}%</div>
-                                    <div className="progress-bar progress-bar-info progress-bar-striped active"
+                                    <div className="progress-bar progress-bar-info progress-bar-striped"
                                          role="progressbar"
                                          style={{width: `${cpu.usage}%`}}/>
                                 </div>
@@ -46,7 +46,7 @@ const ServerCard = (props) => {
                                 <div className="progress">
                                     <div className="progress-placeholder">RAM: {memory.current}/{memory.total}</div>
                                     <div className="progress-text">RAM: {memory.current}/{memory.total}</div>
-                                    <div className="progress-bar progress-bar-info progress-bar-striped active"
+                                    <div className="progress-bar progress-bar-info progress-bar-striped"
                                          role="progressbar"
                                          style={{width: `${memory.usage}%`}}/>
                                 </div>
@@ -57,7 +57,7 @@ const ServerCard = (props) => {
                                 <div className="progress">
                                     <div className="progress-placeholder">DISK: {disk.current}/{disk.total}</div>
                                     <div className="progress-text">DISK: {disk.current}/{disk.total}</div>
-                                    <div className="progress-bar progress-bar-info progress-bar-striped active"
+                                    <div className="progress-bar progress-bar-info progress-bar-striped"
                                          role="progressbar"
                                          style={{width: `${disk.usage}%`}}/>
                                 </div>
