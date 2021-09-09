@@ -19,7 +19,7 @@
     float: left;
     width: 100%;
     text-align: center;
-    visibility: hidden;
+    /*visibility: hidden;*/
 }
 
 .progress-text {
