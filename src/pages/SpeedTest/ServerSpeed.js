@@ -71,7 +71,12 @@ const ServerSpeed = (props) => {
             const cpt = 1;
             for (let i = 0; i < N; i++) {
                 const date1 = new Date();
-                await httpRequest.get(server.url, {cancelToken: cancelTokenSource.current.token});
+                if (server.isInChina) {
+                    await httpRequest.get(`/api/curl?url=${server.url}`,
+                        {cancelToken: cancelTokenSource.current.token});
+                } else {
+                    await httpRequest.get(server.url, {cancelToken: cancelTokenSource.current.token});
+                }
                 const date2 = new Date();
                 const delta = date2 - date1;
                 if (isMountedRef.current) {
