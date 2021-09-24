@@ -94,9 +94,10 @@ const ServerSpeed = (props) => {
                         }
                     });
                 }
-                await sleep(200);
+                await sleep(100);
             }
         } catch (e) {
+            console.log(e);
             if (isMountedRef.current) {
                 const newData = {...server, error: true, message: e.message === 'Network Error' ? '网络错误' : e.message};
                 lineDispatch({
@@ -112,10 +113,15 @@ const ServerSpeed = (props) => {
     const fetchData = async () => {
         lineDispatch({type: 'RESET'});
         cancelTokenSource.current = httpRequest.CancelToken.source();
+        const table = [];
         for (const server of servers) {
-            await getServerInfo(server);
+            table.push(getServerInfo(server));
         }
-        cancelTokenSource.current = null;
+        Promise.all(table).then(() => {
+            cancelTokenSource.current = null;
+        }).catch(e => {}).finally(() => {
+            isMountedRef.current && setIsLoading(false);
+        });
     };
 
     useEffect(() => {
@@ -129,7 +135,6 @@ const ServerSpeed = (props) => {
     const btnRefreshHandler = async () => {
         isMountedRef.current && setIsLoading(true);
         await fetchData();
-        isMountedRef.current && setIsLoading(false);
     };
     return (
         <Fragment>
