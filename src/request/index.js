@@ -2,8 +2,8 @@ import axios from 'axios';
 import qs from 'qs';
 
 let instance = axios.create({
-    baseURL: 'https://fr.qfdk.me', // 这里是本地express启动的服务地址
-    // baseURL: 'http://localhost:3000', // 这里是本地express启动的服务地址
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://fr.qfdk.me' : null, // 这里是本地express启动的服务地址
+    // baseURL: 'http://localhost:5000', // 这里是本地express启动的服务地址
     timeout: 10000 // request timeout
 });
 instance.interceptors.request.use(config => {
