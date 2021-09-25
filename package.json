@@ -2,7 +2,7 @@
   "name": "nasi_campur_react",
   "version": "0.0.1",
   "private": true,
-  "homepage": ".",
+  "homepage": "/",
   "proxy": "http://localhost:5000",
   "dependencies": {
     "@babel/core": "7.12.3",
