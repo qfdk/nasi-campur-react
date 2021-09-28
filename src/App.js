@@ -11,6 +11,7 @@ const Help = lazy(() => import('./pages/Help'));
 const Server = lazy(() => import('./pages/ServerMetric'));
 const SpeedTest = lazy(() => import('./pages/SpeedTest'));
 const UserInfo = lazy(() => import('./pages/UserInfo'));
+const IPCheck = lazy(() => import('./pages/IPCheck'));
 
 const App = () => {
     useEffect(() => {
@@ -38,6 +39,7 @@ const App = () => {
                         <Route path="/servers" component={Server} exact/>
                         <Route path="/speed-test" component={SpeedTest} exact/>
                         <Route path="/search/:wechatName" component={UserInfo} exact/>
+                        <Route path="/ip-check" component={IPCheck} exact/>
                         {/*<Redirect to="/"/>*/}
                     </Suspense>
                 </div>

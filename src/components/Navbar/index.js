@@ -56,6 +56,12 @@ const Navbar = () => {
                         </li>
 
                         <li className="nav-item">
+                            <NavLink className="nav-link" to="/ip-check" exact>
+                                <i className={'fa fa-map-marked-alt'}/> IP检查
+                            </NavLink>
+                        </li>
+
+                        <li className="nav-item">
                             <NavLink className="nav-link" to="/help" exact>
                                 <i className={'fa fa-address-book'}/> 帮助
                             </NavLink>
