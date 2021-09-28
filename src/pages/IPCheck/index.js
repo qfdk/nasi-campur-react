@@ -15,7 +15,7 @@ const IPCheck = () => {
                 <tr>
                     <td>China Site</td>
                     <td>
-                        <iframe title="china" src="https://myip.ipip.net/" width="100%" height="30" scrolling="no"
+                        <iframe title="china" src="https://myip.ipip.net" width="100%" height="30" scrolling="no"
                                 frameBorder="0"
                                 marginHeight="0" marginWidth="0"></iframe>
                     </td>
@@ -33,7 +33,7 @@ const IPCheck = () => {
                 <tr>
                     <td>Google</td>
                     <td>
-                        <iframe title="google" src="https://sspanel.net/ip.php" width="100%" height="30" scrolling="no"
+                        <iframe title="google" src="https://ipv4.appspot.com" width="100%" height="30" scrolling="no"
                                 frameBorder="0"
                                 marginHeight="0" marginWidth="0"></iframe>
                     </td>
