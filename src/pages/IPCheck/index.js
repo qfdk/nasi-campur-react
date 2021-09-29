@@ -15,7 +15,7 @@ const IPCheck = () => {
                 <tr>
                     <td>China Site</td>
                     <td>
-                        <iframe title="china" src="https://ip.tool.lu" width="100%" height="30" scrolling="no"
+                        <iframe title="china" src="https://cn.ipcelou.com" width="100%" height="30" scrolling="no"
                                 frameBorder="0"
                                 marginHeight="0" marginWidth="0"></iframe>
                     </td>
