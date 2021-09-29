@@ -202,41 +202,41 @@ const UserInfo = () => {
                     <p className="text-center">节点二维码</p>
                 </div>
             </div>}
-            {
-                (user.hasV2ray || user.hasSSR) && <div className="panel panel-success">
-                    <div className="panel-heading text-center">
-                        <h3 className="panel-title">
-                            <span>懒人订阅设置</span>
-                        </h3>
-                    </div>
-                    <div className="panel-body">
-                        <label>Clash 配置文件:</label>
-                        <div className="input-group">
-                            <input type="text" className="form-control"
-                                   style={{minWidth: '200px'}}
-                                   ref={clashRef}
-                                   readOnly={true}
-                                   defaultValue={`https://fr.qfdk.me/users/sub/${user.wechatName}`}
-                            />
-                            <div className="input-group-btn">
-                                <button className="btn btn-primary" onClick={copyToClipboard}>复制</button>
-                            </div>
-                        </div>
-                        <button className="btn btn-primary"
-                                onClick={importBtnHandler}
-                                style={{marginTop: '10px'}}
-                        >
-                            <i className={'fa fa-seedling'}/> 一键导入 clash
-                        </button>
-                    </div>
+            {(user.hasV2ray || user.hasSSR) && <div className="panel panel-success">
+                <div className="panel-heading text-center">
+                    <h3 className="panel-title">
+                        <span>懒人订阅设置</span>
+                    </h3>
                 </div>
-            }
+                <div className="panel-body">
+                    <label>Clash 配置文件:</label>
+                    <div className="input-group">
+                        <input type="text" className="form-control"
+                               style={{minWidth: '200px'}}
+                               ref={clashRef}
+                               readOnly={true}
+                               defaultValue={`https://fr.qfdk.me/users/sub/${user.wechatName}`}
+                        />
+                        <div className="input-group-btn">
+                            <button className="btn btn-primary" onClick={copyToClipboard}>复制</button>
+                        </div>
+                    </div>
+                    <button className="btn btn-primary"
+                            onClick={importBtnHandler}
+                            style={{marginTop: '10px'}}>
+                        <i className={'fa fa-seedling'}/> 一键导入 clash
+                    </button>
+                </div>
+            </div>}
         </Fragment>;
     };
 
     return (
-        userInfo.data && userInfo.data.error ? createError(userInfo.data.error) : userInfo.data &&
-            createUserInfo(userInfo.data, loading)
+        <Fragment>
+            {!userInfo.data && <Spinner/>}
+            {userInfo.data && userInfo.data.error ? createError(userInfo.data.error) : userInfo.data &&
+                createUserInfo(userInfo.data, loading)}
+        </Fragment>
     );
 };
 
