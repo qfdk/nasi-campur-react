@@ -154,6 +154,7 @@
   },
   "devDependencies": {
     "glob-all": "^3.2.1",
-    "purgecss-webpack-plugin": "^4.0.3"
+    "purgecss-webpack-plugin": "^4.0.3",
+    "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }
