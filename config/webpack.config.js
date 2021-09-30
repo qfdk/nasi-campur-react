@@ -655,8 +655,8 @@ module.exports = function(webpackEnv) {
             new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional
-                filename: 'static/css/[name].[contenthash:8].css',
-                chunkFilename: 'static/css/[name].[contenthash:8].chunk.css'
+                filename: 'static/css/[name].[chunkhash:8].css',
+                chunkFilename: 'static/css/[name].[chunkhash:8].chunk.css'
             }),
             // 生产环境减少无用的 css
             isEnvProduction && new PurgecssPlugin({
