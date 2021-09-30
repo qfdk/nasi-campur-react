@@ -233,6 +233,10 @@ const UserInfo = () => {
 
     return (
         <Fragment>
+            <h3>
+                <span>༼ つ ◕_◕ ༽つ  </span>
+                <span className={'text-primary'}>查询结果</span>
+            </h3>
             {!userInfo.data && <Spinner/>}
             {userInfo.data && userInfo.data.error ? createError(userInfo.data.error) : userInfo.data &&
                 createUserInfo(userInfo.data, loading)}

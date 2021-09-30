@@ -7,13 +7,13 @@ const IPCheck = () => {
             <table className={'table'}>
                 <thead>
                 <tr>
-                    <th>检测点</th>
+                    <th>位置</th>
                     <th>检测结果</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>China Site</td>
+                    <td><b>🇨🇳&nbsp;&nbsp;China</b></td>
                     <td>
                         <iframe title="china" src="https://cn.ipcelou.com" width="100%" height="30" scrolling="no"
                                 frameBorder="0"
@@ -22,7 +22,7 @@ const IPCheck = () => {
                 </tr>
 
                 <tr>
-                    <td>Outside</td>
+                    <td><b>🌍&nbsp;&nbsp;World</b></td>
                     <td>
                         <iframe title="Outside" src="https://api-ipv4.ip.sb/ip" width="100%" height="30"
                                 scrolling="no" frameBorder="0"
@@ -31,7 +31,7 @@ const IPCheck = () => {
                 </tr>
 
                 <tr>
-                    <td>Google</td>
+                    <td><b><i className="fab fa-google"></i> Google</b></td>
                     <td>
                         <iframe title="google" src="https://ipv4.appspot.com" width="100%" height="30" scrolling="no"
                                 frameBorder="0"
