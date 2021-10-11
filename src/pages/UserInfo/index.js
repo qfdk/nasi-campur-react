@@ -48,7 +48,7 @@ const UserInfo = () => {
 
     // clash 引入
     const importBtnHandler = () => {
-        window.open(`clash://install-config?url=https://fr.qfdk.me/users/sub/${userInfo.user.wechatName}`);
+        window.open(`clash://install-config?url=https://fr.qfdk.me/users/sub/${params.wechatName}`);
     };
 
     const [containerState, setContainerState] = useState({});
