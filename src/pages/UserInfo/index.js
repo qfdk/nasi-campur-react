@@ -56,7 +56,7 @@ const UserInfo = () => {
     // 重建二维码
     const reCreateContainer = (uid) => {
         setLoading(true);
-        httpRequest.get('/users/reCreateContainer', {params: {uid, json: true}})
+        httpRequest.get('/users/reCreateContainer', {params: {uid}})
         .then(response => {
             const {containerPort, containerStatus, ssrImg, qrCode} = response.data;
             setContainerState(oldState => ({
@@ -82,8 +82,7 @@ const UserInfo = () => {
         if (params.wechatName) {
             httpRequest.get('/users/findUserByWechatName', {
                 params: {
-                    wechatName: params.wechatName,
-                    json: true
+                    wechatName: params.wechatName
                 }
             }).then(response => {
                 userInfoDispatch({type: userConstants.SET, payload: response.data});
