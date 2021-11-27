@@ -35,7 +35,7 @@ const SpeedTest = () => {
         let mounted = true;
         const cancelToken = httpRequest.CancelToken.source();
 
-        httpRequest.get('/api/servers').then(response => {
+        httpRequest.get('/public/servers').then(response => {
             mounted && serversDispatch({type: serverConstants.SET, payload: response.data});
         }).catch((e) => {console.log(e.message);});
 
