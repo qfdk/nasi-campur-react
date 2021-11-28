@@ -2,9 +2,8 @@ import React, {lazy, Suspense, useEffect, useMemo} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Spinner from './widget/Spinner';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import Footer from './components/Footer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = lazy(() => import('./pages/Home'));
 const Help = lazy(() => import('./pages/Help'));

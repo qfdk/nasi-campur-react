@@ -33,7 +33,7 @@ const SearchInput = React.memo(() => {
                         <button type="submit"
                                 disabled={!wechatName.length}
                                 className="btn btn-primary" onClick={searchBtnHandler}>
-                            <i className="fa fa-search" aria-hidden="true"></i> 查询
+                            <span className="icon-search"></span> 查询
                         </button>
                     </div>
                 </div>

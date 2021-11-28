@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink} from 'react-router-dom';
+import './index.css';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -39,31 +40,31 @@ const Navbar = () => {
                     <ul className="nav navbar-nav navbar-right">
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/" exact>
-                                <i className={'fa fa-home'}/> 主页
+                                <span className="icon-home3"></span> 主页
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/servers" exact>
-                                <i className={'fa fa-server'}/> 服务器列表
+                                <span className="icon-database"></span> 服务器列表
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/speed-test" exact>
-                                <i className={'fa fa-tachometer-alt'}/> 测速
+                                <span className="icon-meter"></span> 测速
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/ip-check" exact>
-                                <i className={'fa fa-map-marked-alt'}/> IP检查
+                                <span className="icon-compass2"></span> IP检查
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/help" exact>
-                                <i className={'fa fa-address-book'}/> 帮助
+                                <span className="icon-book"></span> 帮助
                             </NavLink>
                         </li>
                     </ul>

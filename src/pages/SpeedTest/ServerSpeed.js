@@ -141,7 +141,7 @@ const ServerSpeed = (props) => {
             <button className={'btn btn-primary'}
                     onClick={btnRefreshHandler}
                     disabled={isLoading}>
-                <i className={isLoading ? 'fas fa-sync-alt fa-spin' : 'fas fa-sync-alt'}/> 响应测试
+                <span className="icon-loop2"></span> 响应测试
             </button>
 
             <table className="table" style={{marginTop: '20px'}}>

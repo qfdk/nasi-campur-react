@@ -148,7 +148,7 @@ const UserInfo = () => {
                             <label className="control-label" htmlFor="port">端口：</label>
                             <span id="port" className="form-control-static">
                                 {loading ? <span className="label label-warning">
-                                    <i className="fas fa-sync fa-spin"/> 正在生成端口</span> :
+                                    <i className="fa fa-sync fa-spin"/> 正在生成端口</span> :
                                     containerState.port}
                             </span>
                         </div>}
