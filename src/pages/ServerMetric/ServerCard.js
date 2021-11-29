@@ -32,39 +32,39 @@ const ServerCard = (props) => {
                             <span>{lastUpdateTime}</span></div>
                         <div className="metric">
                             {/*<label className="usageLabel inline">CPU 使用率:</label>*/}
-                            {cpu && cpu.usage && <div className="usageProcess">
+                            <div className="usageProcess">
                                 <div className="progress">
-                                    <div className="progress-placeholder">CPU 使用率: {cpu.usage}%</div>
-                                    <div className="progress-text">CPU 使用率: {cpu.usage}%</div>
+                                    <div className="progress-placeholder">CPU 使用率: {cpu ? cpu.usage : '0.00'}%</div>
+                                    <div className="progress-text">CPU 使用率: {cpu ? cpu.usage : '0.00'}%</div>
                                     <div className="progress-bar progress-bar-info progress-bar-striped"
                                          role="progressbar"
-                                         style={{width: `${cpu.usage}%`}}/>
+                                         style={{width: `${cpu ? cpu.usage : 0}%`}}/>
                                 </div>
-                            </div>}
+                            </div>
                         </div>
                         <div className="metric">
                             {/*<label className="usageLabel inline">RAM 使用率:</label>*/}
-                            {memory && <div className="usageProcess">
+                            <div className="usageProcess">
                                 <div className="progress">
-                                    <div className="progress-placeholder">RAM 使用率: {memory.current}/{memory.total}</div>
-                                    <div className="progress-text">RAM 使用率: {memory.current}/{memory.total}</div>
+                                    <div className="progress-placeholder">RAM 使用率: {memory?memory.current:'-'}/{memory?memory.total:'-'}</div>
+                                    <div className="progress-text">RAM 使用率: {memory?memory.current:'-'}/{memory?memory.total:'-'}</div>
                                     <div className="progress-bar progress-bar-info progress-bar-striped"
                                          role="progressbar"
-                                         style={{width: `${memory.usage}%`}}/>
+                                         style={{width: `${memory ? memory.usage : 0}%`}}/>
                                 </div>
-                            </div>}
+                            </div>
                         </div>
                         <div className="metric">
                             {/*<label className="usageLabel inline">硬盘使用率:</label>*/}
-                            {disk && <div className="usageProcess">
+                            <div className="usageProcess">
                                 <div className="progress">
-                                    <div className="progress-placeholder">硬盘使用率: {disk.current}/{disk.total}</div>
-                                    <div className="progress-text">硬盘使用率: {disk.current}/{disk.total}</div>
+                                    <div className="progress-placeholder">硬盘使用率: {disk?disk.current:'-'}/{disk?disk.total:'-'}</div>
+                                    <div className="progress-text">硬盘使用率: {disk?disk.current:'-'}/{disk?disk.total:'-'}</div>
                                     <div className="progress-bar progress-bar-info progress-bar-striped"
                                          role="progressbar"
-                                         style={{width: `${disk.usage}%`}}/>
+                                         style={{width: `${disk ? disk.usage : 0}%`}}/>
                                 </div>
-                            </div>}
+                            </div>
                         </div>
                     </div>
                 </div>
