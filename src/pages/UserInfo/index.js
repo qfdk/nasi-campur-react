@@ -233,7 +233,6 @@ const UserInfo = () => {
     return (
         <Fragment>
             <h3>
-                <span>༼ つ ◕_◕ ༽つ  </span>
                 <span className={'text-primary'}>查询结果</span>
             </h3>
             {!userInfo.data && <Spinner/>}

@@ -17,7 +17,7 @@ const StaticInfo = React.memo(({cpu, type, os}) => {
 const ServerCard = (props) => {
     const {country, description, uptime, lastUpdateTime, cpu, network, type, os, disk, memory} = props;
     return (
-        <div className="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <div className="col-xs-12 col-sm-6 col-md-4">
             <div className={cpu ? 'panel panel-success' : 'panel panel-danger'}>
                 <div className="panel-heading"><h3 className="panel-title">{country} - {description}</h3></div>
                 <div className="panel-body">
@@ -46,8 +46,8 @@ const ServerCard = (props) => {
                             {/*<label className="usageLabel inline">RAM 使用率:</label>*/}
                             <div className="usageProcess">
                                 <div className="progress">
-                                    <div className="progress-placeholder">RAM 使用率: {memory?memory.current:'-'}/{memory?memory.total:'-'}</div>
-                                    <div className="progress-text">RAM 使用率: {memory?memory.current:'-'}/{memory?memory.total:'-'}</div>
+                                    <div className="progress-placeholder">RAM 使用率: {memory?memory.current:' - '}/{memory?memory.total:' - '}</div>
+                                    <div className="progress-text">RAM 使用率: {memory?memory.current:' - '}/{memory?memory.total:' - '}</div>
                                     <div className="progress-bar progress-bar-info progress-bar-striped"
                                          role="progressbar"
                                          style={{width: `${memory ? memory.usage : 0}%`}}/>
@@ -58,8 +58,8 @@ const ServerCard = (props) => {
                             {/*<label className="usageLabel inline">硬盘使用率:</label>*/}
                             <div className="usageProcess">
                                 <div className="progress">
-                                    <div className="progress-placeholder">硬盘使用率: {disk?disk.current:'-'}/{disk?disk.total:'-'}</div>
-                                    <div className="progress-text">硬盘使用率: {disk?disk.current:'-'}/{disk?disk.total:'-'}</div>
+                                    <div className="progress-placeholder">硬盘使用率: {disk?disk.current:' - '}/{disk?disk.total:' - '}</div>
+                                    <div className="progress-text">硬盘使用率: {disk?disk.current:' - '}/{disk?disk.total:' - '}</div>
                                     <div className="progress-bar progress-bar-info progress-bar-striped"
                                          role="progressbar"
                                          style={{width: `${disk ? disk.usage : 0}%`}}/>
