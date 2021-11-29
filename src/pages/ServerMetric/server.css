@@ -34,6 +34,11 @@
 }
 
 .usageProcess {
-    min-width: 225px;
-    float: right;
+    /*min-width: 225px;*/
+    margin-bottom: 12px;
+}
+
+.metric-status {
+    /*padding-left: 24px;*/
+    /*padding-right: 24px;*/
 }
