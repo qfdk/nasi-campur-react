@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import {useHistory} from 'react-router-dom';
 
-const Alert = React.memo(({type = 'danger', message}) => {
+const Alert = ({type = 'danger', message}) => {
     const history = useHistory();
 
     const handleClick = () => {
@@ -17,6 +17,6 @@ const Alert = React.memo(({type = 'danger', message}) => {
             <button onClick={handleClick} className={'btn btn-primary'}><i className={'fa fa-undo'}/> 返回</button>
         </Fragment>
     );
-});
+};
 
 export default Alert;
