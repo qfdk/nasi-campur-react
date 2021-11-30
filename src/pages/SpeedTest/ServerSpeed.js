@@ -2,6 +2,7 @@ import React, {Fragment, useEffect, useReducer, useRef, useState} from 'react';
 import httpRequest from '../../request';
 import FlipMove from 'react-flip-move';
 import useIsMountedRef from '../../hooks/useIsMountedRef';
+import './spinner.css';
 
 const N = 3;
 const Line = React.memo(({number, data}) => {
@@ -141,7 +142,7 @@ const ServerSpeed = (props) => {
             <button className={'btn btn-primary'}
                     onClick={btnRefreshHandler}
                     disabled={isLoading}>
-                <span className="icon-loop2"></span> 响应测试
+                <span className={isLoading ? 'icon-loop2 loading-spinner spinner--steps' : 'icon-loop2'}></span> 响应测试
             </button>
 
             <table className="table" style={{marginTop: '20px'}}>
