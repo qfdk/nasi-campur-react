@@ -75,7 +75,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "export NODE_ENV=production && rm -rf ../nasi-campur-master/public/react&&node scripts/build.js && cp -r build ../nasi-campur-master/public/react",
+    "build": "export NODE_ENV=production BASE_URL=https://de.qfdk.me && rm -rf ../nasi-campur-master/public/react&&node scripts/build.js && cp -r build ../nasi-campur-master/public/react",
     "build-dev": "export NODE_ENV=development && rm -rf ../nasi-campur-master/public/react&&node scripts/build.js && cp -r build ../nasi-campur-master/public/react",
     "test": "node scripts/test.js"
   },

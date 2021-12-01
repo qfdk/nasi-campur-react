@@ -5,6 +5,8 @@ import {useParams} from 'react-router-dom';
 import Spinner from '../../widget/Spinner';
 import Alert from '../../widget/Alert';
 
+const BASE_URL = process.env.BASE_URL ? process.env.BASE_URL : 'https://de.qfdk.me';
+
 const createMarkup = (html) => {
     return {__html: html};
 };
@@ -48,7 +50,7 @@ const UserInfo = () => {
 
     // clash 引入
     const importBtnHandler = () => {
-        window.open(`clash://install-config?url=https://fr.qfdk.me/users/sub/${params.wechatName}`);
+        window.open(`clash://install-config?url=${BASE_URL}/users/sub/${params.wechatName}`);
     };
 
     const [containerState, setContainerState] = useState({});
@@ -214,7 +216,7 @@ const UserInfo = () => {
                                style={{minWidth: '200px'}}
                                ref={clashRef}
                                readOnly={true}
-                               defaultValue={`https://fr.qfdk.me/users/sub/${user.wechatName}`}
+                               defaultValue={`${BASE_URL}/users/sub/${user.wechatName}`}
                         />
                         <div className="input-group-btn">
                             <button className="btn btn-primary" onClick={copyToClipboard}>复制</button>
