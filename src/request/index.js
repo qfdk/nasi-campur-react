@@ -2,7 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 const instance = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://fr.qfdk.me' : 'http://localhost:5000', // 这里是本地express启动的服务地址
+    baseURL: process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:5000', // 这里是本地express启动的服务地址
     timeout: 8000 // request timeout
 });
 instance.interceptors.request.use(config => {
