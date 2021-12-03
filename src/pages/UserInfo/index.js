@@ -105,7 +105,7 @@ const UserInfo = () => {
     }, [params.wechatName]);
 
     const createUserInfo = (inputData, loading) => {
-        const {user, traffic, endTime, v2rayImg, v2ray} = inputData;
+        const {user, traffic, endTime, v2rayImg} = inputData;
         return <Fragment>
             <div className="panel panel-primary" style={{marginTop: '20px'}}>
                 <div className="panel-heading">
@@ -114,68 +114,61 @@ const UserInfo = () => {
                     </h3>
                 </div>
                 <div className="panel-body row">
-                    <div className="form-inline col-md-10 col-md-offset-2">
-                        <div className="form-group col-md-5">
-                            <label className="control-label" htmlFor="wechatName">微信账号:</label>
-                            <span className="form-control-static" id="wechatName">
-                    <span dangerouslySetInnerHTML={createMarkup(user.icon)}/>
-                                {user.wechatName}
-                    </span>
-                        </div>
-                        <div className="form-group col-md-5">
-                            <label className="control-label" htmlFor="isEnable">账户状态：</label>
-                            <span className="form-control-static" id="isEnable">
+
+                    <div className="form-group col-xs-12 col-md-4 col-lg-2">
+                        <label className="control-label" htmlFor="wechatName">微信账号:</label>
+                        <span className="form-control-static" id="wechatName">
+                            <span dangerouslySetInnerHTML={createMarkup(user.icon)}/>{user.wechatName}</span>
+                    </div>
+                    <div className="form-group col-xs-12 col-md-4 col-lg-2">
+                        <label className="control-label" htmlFor="containerLocation">实例区域：</label>
+                        <span className="form-control-static"
+                              id="containerLocation">{user.server.country}</span>
+                    </div>
+                    <div className="form-group col-xs-12 col-md-4 col-lg-2">
+                        <label className="control-label" htmlFor="endTime">结束时间：</label>
+                        <span className="form-control-static" id="endTime">{endTime}</span>
+                    </div>
+                    <div className="form-group col-xs-6 col-md-4 col-lg-2">
+                        <label className="control-label" htmlFor="isEnable">账户状态：</label>
+                        <span className="form-control-static" id="isEnable">
                     {user.isEnable ? <span className="label label-success">已捐助</span> : <span
                         className="label label-warning">暂时免费</span>}
                 </span>
-                        </div>
                     </div>
-                    <div className="form-inline col-md-10 col-md-offset-2">
-                        <div className="form-group col-md-5">
-                            <label className="control-label" htmlFor="containerLocation">实例区域：</label>
-                            <span className="form-control-static"
-                                  id="containerLocation">{user.server.country}</span>
-                        </div>
-                        <div className="form-group col-md-5">
-                            <label className="control-label" htmlFor="endTime">结束时间：</label>
-                            <span className="form-control-static" id="endTime">{endTime}</span>
-                        </div>
+                    <div className="form-group col-xs-6 col-md-4 col-lg-2">
+                        <label className="control-label" htmlFor="networkTraffic">已使用流量：</label>
+                        <span id="networkTraffic" className="form-control-static">{traffic}</span>
                     </div>
-                    <div className="form-inline col-md-10 col-md-offset-2">
-                        <div className="form-group col-md-5">
-                            <label className="control-label" htmlFor="networkTraffic">已使用流量：</label>
-                            <span id="networkTraffic" className="form-control-static">{traffic}</span>
-                        </div>
-                        {user.hasSSR && <div className="form-group col-md-5">
-                            <label className="control-label" htmlFor="port">端口：</label>
-                            <span id="port" className="form-control-static">
+                    {user.hasSSR && <div className="form-group col-xs-6 col-md-4 col-lg-2">
+                        <label className="control-label">服务状态：</label>
+                        <span className="form-control-static">
+                            {containerState.status === 'running' &&
+                            <span className="label label-success">正在运行</span>}
+                            {containerState.status === 'exited' &&
+                            <span className="label label-danger">已停止</span>}
+                        </span>
+                    </div>}
+                    {user.hasSSR && <div className="form-group col-xs-4 col-md-4 col-lg-2">
+                        <label className="control-label" htmlFor="port">端口：</label>
+                        <span id="port" className="form-control-static">
                                 {loading ? <span className="label label-warning">
                                     <i className="fa fa-sync fa-spin"/> 正在生成端口</span> :
                                     containerState.port}
                             </span>
-                        </div>}
-                    </div>
-                    {user.hasSSR && <div className="form-inline col-md-10 col-md-offset-2">
-                        <div className="form-group col-md-5">
-                            <label className="control-label">服务状态：</label>
-                            <span className="form-control-static">
-                            {containerState.status === 'running' &&
-                            <span className="label label-success">正在运行</span>}
-                                {containerState.status === 'exited' &&
-                                <span className="label label-danger">已停止</span>}
-                        </span>
-                        </div>
-                        {user.enableSelfControl && <div className="form-group col-md-5">
-                            <label className="control-label">自主操作：</label>
-                            <button className="btn btn-info btn-xs load"
-                                    disabled={loading}
-                                    onClick={() => {reCreateContainer(user._id);}}>
-                                <span className="glyphicon glyphicon-random"/> 重置二维码
-                            </button>
-                        </div>}
                     </div>}
+                    {user.hasSSR && user.enableSelfControl && <div className="form-group col-xs-12 col-md-4 col-lg-2">
+                        <label className="control-label">自主操作：</label>
+                        <button className="btn btn-info btn-xs load"
+                                disabled={loading}
+                                onClick={() => {reCreateContainer(user._id);}}>
+                            <span className="glyphicon glyphicon-random"/> 重置二维码
+                        </button>
+                    </div>}
+
                 </div>
             </div>
+            {/*分割线*/}
             {user.hasV2ray && <div className="panel panel-success">
                 <div className="panel-heading text-center">
                     <h3 className="panel-title">V2ray 客户端专用</h3>
@@ -185,7 +178,6 @@ const UserInfo = () => {
                          className="img-responsive center-block img-height"
                          src={v2rayImg}
                          alt="二维码"/>
-                    <pre dangerouslySetInnerHTML={createMarkup(v2ray)}/>
                 </div>
             </div>}
             {user.hasSSR && <div className="panel panel-success">
