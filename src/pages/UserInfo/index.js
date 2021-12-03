@@ -115,32 +115,40 @@ const UserInfo = () => {
                 </div>
                 <div className="panel-body row">
 
-                    <div className="form-group col-xs-12 col-md-4 col-lg-2">
+                    <div className="form-group col-xs-12 col-md-4">
                         <label className="control-label" htmlFor="wechatName">微信账号:</label>
                         <span className="form-control-static" id="wechatName">
                             <span dangerouslySetInnerHTML={createMarkup(user.icon)}/>{user.wechatName}</span>
                     </div>
-                    <div className="form-group col-xs-12 col-md-4 col-lg-2">
+                    <div className="form-group col-xs-12 col-md-4">
+                        <label className="control-label" htmlFor="endTime">结束时间：</label>
+                        <span className="form-control-static" id="endTime">{endTime}</span>
+                    </div>
+                    <div className="form-group col-xs-12 col-md-4">
                         <label className="control-label" htmlFor="containerLocation">实例区域：</label>
                         <span className="form-control-static"
                               id="containerLocation">{user.server.country}</span>
                     </div>
-                    <div className="form-group col-xs-12 col-md-4 col-lg-2">
-                        <label className="control-label" htmlFor="endTime">结束时间：</label>
-                        <span className="form-control-static" id="endTime">{endTime}</span>
-                    </div>
-                    <div className="form-group col-xs-6 col-md-4 col-lg-2">
+                    <div className="form-group col-xs-6 col-md-4">
                         <label className="control-label" htmlFor="isEnable">账户状态：</label>
                         <span className="form-control-static" id="isEnable">
                     {user.isEnable ? <span className="label label-success">已捐助</span> : <span
                         className="label label-warning">暂时免费</span>}
                 </span>
                     </div>
-                    <div className="form-group col-xs-6 col-md-4 col-lg-2">
+                    <div className="form-group col-xs-6 col-md-4">
                         <label className="control-label" htmlFor="networkTraffic">已使用流量：</label>
                         <span id="networkTraffic" className="form-control-static">{traffic}</span>
                     </div>
-                    {user.hasSSR && <div className="form-group col-xs-6 col-md-4 col-lg-2">
+                    {user.hasSSR && <div className="form-group col-xs-6 col-md-4">
+                        <label className="control-label" htmlFor="port">端口：</label>
+                        <span id="port" className="form-control-static">
+                                {loading ? <span className="label label-warning">
+                                    <i className="fa fa-sync fa-spin"/> 正在生成端口</span> :
+                                    containerState.port}
+                            </span>
+                    </div>}
+                    {user.hasSSR && <div className="form-group col-xs-6 col-md-4">
                         <label className="control-label">服务状态：</label>
                         <span className="form-control-static">
                             {containerState.status === 'running' &&
@@ -149,15 +157,7 @@ const UserInfo = () => {
                             <span className="label label-danger">已停止</span>}
                         </span>
                     </div>}
-                    {user.hasSSR && <div className="form-group col-xs-4 col-md-4 col-lg-2">
-                        <label className="control-label" htmlFor="port">端口：</label>
-                        <span id="port" className="form-control-static">
-                                {loading ? <span className="label label-warning">
-                                    <i className="fa fa-sync fa-spin"/> 正在生成端口</span> :
-                                    containerState.port}
-                            </span>
-                    </div>}
-                    {user.hasSSR && user.enableSelfControl && <div className="form-group col-xs-12 col-md-4 col-lg-2">
+                    {user.hasSSR && user.enableSelfControl && <div className="form-group col-xs-12 col-md-4">
                         <label className="control-label">自主操作：</label>
                         <button className="btn btn-info btn-xs load"
                                 disabled={loading}
