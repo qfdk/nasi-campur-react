@@ -129,14 +129,14 @@ const UserInfo = () => {
                         <span className="form-control-static"
                               id="containerLocation">{user.server.country}</span>
                     </div>
-                    <div className="form-group col-xs-6 col-md-4">
+                    <div className="form-group col-xs-12 col-md-4">
                         <label className="control-label" htmlFor="isEnable">账户状态：</label>
                         <span className="form-control-static" id="isEnable">
                     {user.isEnable ? <span className="label label-success">已捐助</span> : <span
                         className="label label-warning">暂时免费</span>}
                 </span>
                     </div>
-                    <div className="form-group col-xs-6 col-md-4">
+                    <div className="form-group col-xs-12 col-md-4">
                         <label className="control-label" htmlFor="networkTraffic">已使用流量：</label>
                         <span id="networkTraffic" className="form-control-static">{traffic}</span>
                     </div>
