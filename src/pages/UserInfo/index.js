@@ -116,9 +116,9 @@ const UserInfo = () => {
                 <div className="panel-body row">
 
                     <div className="form-group col-xs-12 col-md-4">
-                        <label className="control-label" htmlFor="wechatName">微信账号:</label>
+                        <label className="control-label" htmlFor="wechatName">微信账号：</label>
                         <span className="form-control-static" id="wechatName">
-                            <span dangerouslySetInnerHTML={createMarkup(user.icon)}/>{user.wechatName}</span>
+                            <span className={"label-favicon"} dangerouslySetInnerHTML={createMarkup(user.icon)}/>{user.wechatName}</span>
                     </div>
                     <div className="form-group col-xs-12 col-md-4">
                         <label className="control-label" htmlFor="endTime">结束时间：</label>

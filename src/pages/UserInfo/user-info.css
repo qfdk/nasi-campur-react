@@ -43,3 +43,7 @@ a.json-link:active {
 .btn-text {
     color: #fff !important;
 }
+
+.label-favicon {
+    margin-right: 5px;
+}
