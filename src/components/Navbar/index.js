@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import './index.css';
 
@@ -74,4 +74,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default memo(Navbar);

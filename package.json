@@ -52,10 +52,10 @@
     "postcss-safe-parser": "5.0.2",
     "prompts": "2.4.0",
     "qs": "^6.10.1",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "react-app-polyfill": "^2.0.0",
     "react-dev-utils": "^11.0.3",
-    "react-dom": "^17.0.2",
+    "react-dom": "^18.2.0",
     "react-flip-move": "^3.0.4",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.2.0",
@@ -75,7 +75,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "export NODE_ENV=production BASE_URL=https://de.qfdk.me && rm -rf ../nasi-campur-master/public/react&&node scripts/build.js && cp -r build ../nasi-campur-master/public/react",
+    "build": "export NODE_ENV=production BASE_URL=https://bigboss.qfdk.me && node scripts/build.js",
     "build-dev": "export NODE_ENV=development && rm -rf ../nasi-campur-master/public/react&&node scripts/build.js && cp -r build ../nasi-campur-master/public/react",
     "test": "node scripts/test.js"
   },

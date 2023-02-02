@@ -31,7 +31,7 @@ const Server = () => {
     const [servers, serversDispatch] = useReducer(serversReducer, initServers);
 
     useEffect(() => {
-        httpRequest.get('/public/servers').then(response => {
+        httpRequest.get('/api/public/servers').then(response => {
             serversDispatch({type: serverConstants.SET, payload: response.data});
         });
     }, []);

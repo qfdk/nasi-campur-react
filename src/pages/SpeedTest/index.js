@@ -35,9 +35,11 @@ const SpeedTest = () => {
         let mounted = true;
         const cancelToken = httpRequest.CancelToken.source();
 
-        httpRequest.get('/public/servers').then(response => {
+        httpRequest.get('/api/public/servers').then(response => {
             mounted && serversDispatch({type: serverConstants.SET, payload: response.data});
-        }).catch((e) => {console.log(e.message);});
+        }).catch((e) => {
+            console.log(e.message);
+        });
 
         return () => {
             cancelToken.cancel('取消请求');
